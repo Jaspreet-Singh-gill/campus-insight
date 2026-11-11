@@ -1,0 +1,284 @@
+---
+title: "Campus Food Insights: Student Eating Habits, Satisfaction, and Data Mining Report"
+author: "Data Mining and Analysis Lab Project"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    theme: flatly
+    highlight: tango
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.align = "center")
+
+library(tidyverse)
+library(knitr)
+
+# Resolve paths cleanly whether knitted from report/ or project root
+out_dir <- if (dir.exists("outputs")) "outputs" else "../outputs"
+plot_dir <- file.path(out_dir, "plots")
+
+df         <- readRDS(file.path(out_dir, "clean.rds"))
+dq_tbl     <- readr::read_csv(file.path(out_dir, "data_quality_summary.csv"), show_col_types = FALSE)
+dropped_df <- readr::read_csv(file.path(out_dir, "dropped_columns.csv"), show_col_types = FALSE)
+overall_r  <- readRDS(file.path(out_dir, "overall_results.rds"))
+eda_r      <- readRDS(file.path(out_dir, "eda_results.rds"))
+quest_r    <- readRDS(file.path(out_dir, "questions_results.rds"))
+mining_r   <- readRDS(file.path(out_dir, "mining_results.rds"))
+
+# Helper getters for inline stats (never hardcode any numbers)
+n_total <- nrow(df)
+get_num <- function(var, col) {
+  overall_r$numeric_summary |>
+    dplyr::filter(variable == var) |>
+    dplyr::pull(!!rlang::sym(col))
+}
+get_prof <- function(var, cat) {
+  overall_r$profile |>
+    dplyr::filter(variable == var, category == cat)
+}
+get_flag <- function(pattern) {
+  overall_r$flag_summary |>
+    dplyr::filter(stringr::str_detect(flag, stringr::fixed(pattern)))
+}
+get_test <- function(comp_name) {
+  eda_r$chisq_tests |>
+    dplyr::filter(comparison == comp_name)
+}
+get_grp <- function(grp_name, val_name) {
+  eda_r$group_averages |>
+    dplyr::filter(grouping == grp_name, group_val == val_name)
+}
+get_out <- function(outlet_name, status_val) {
+  eda_r$outlet_comparisons |>
+    dplyr::filter(grouping == outlet_name, group_val == status_val)
+}
+get_imp <- function(lbl) {
+  overall_r$improvements |>
+    dplyr::filter(option_label == lbl)
+}
+get_q <- function(q_tbl, grp_val, item_lbl) {
+  q_tbl |>
+    dplyr::filter(as.character(group) == grp_val, item == item_lbl)
+}
+get_cor <- function(v1, v2) {
+  eda_r$correlations |>
+    dplyr::filter((var1 == v1 & var2 == v2) | (var1 == v2 & var2 == v1))
+}
+get_rule <- function(idx) {
+  mining_r$rules_df |>
+    dplyr::slice(idx)
+}
+get_tm <- function(m_name) {
+  mining_r$tree_metrics |>
+    dplyr::filter(metric == m_name) |>
+    dplyr::pull(value)
+}
+
+# Derived summaries from clean.rds / outputs for inline text
+nes_spend_tbl <- df |>
+  dplyr::mutate(nes_user = dplyr::if_else(outlet_nescafe == 1, "User", "NonUser")) |>
+  dplyr::group_by(spend_band, nes_user) |>
+  dplyr::summarise(pct = round(100 * mean(satisfied), 1), .groups = "drop")
+get_nes_band <- function(band_pat, who) {
+  nes_spend_tbl |>
+    dplyr::filter(stringr::str_detect(as.character(spend_band), stringr::fixed(band_pat)), nes_user == who) |>
+    dplyr::pull(pct)
+}
+
+leaf_tbl <- df |>
+  dplyr::mutate(
+    leaf = dplyr::case_when(
+      spend < 2250 ~ "low_spend",
+      factor_hygiene_cleanliness == 1 ~ "high_hyg",
+      TRUE ~ "high_nohyg"
+    )
+  ) |>
+  dplyr::group_by(leaf) |>
+  dplyr::summarise(
+    n = dplyr::n(),
+    pct_sat = round(100 * mean(satisfied), 1),
+    pct_unsat = round(100 * (1 - mean(satisfied)), 1),
+    .groups = "drop"
+  )
+get_leaf <- function(leaf_id) leaf_tbl |> dplyr::filter(leaf == leaf_id)
+```
+
+# Introduction
+
+Understanding how university students eat on campus helps campus administrators, hostel mess committees, and food vendors improve food quality, hygiene, affordability, and outlet availability. In this **Campus Food Insights** project, we analyze a Google Form student survey covering campus outlet preferences, daily meals eaten at campus outlets, meal skipping, monthly extra spending, outside food ordering, overall satisfaction, decision factors, and wanted improvements.
+
+The goal is simple and practical: clean the raw survey answers carefully, explore overall patterns and group differences using simple statistical checks (cross-tables, percentages, Pearson correlations, and chi-square tests), answer focused questions that emerge from the data, apply two data-mining techniques (**association rules** and a **decision tree**), and package everything into an interactive **Shiny dashboard** (`app/app.R`) and this final HTML report.
+
+# Data Collection
+
+The raw dataset (`data/dmaProjectdata.csv`) contains **`r n_total` student responses** across **`r dq_tbl$value[dq_tbl$metric == "Raw columns"]` columns**, collected via Google Forms on `10/11/2026` between `15:15:14` and `15:53:33` (a roughly 38-minute window).
+
+Important sampling characteristics of who answered:
+
+- **Year of study:** `r get_prof("year", "3rd Year")$count` students (`r get_prof("year", "3rd Year")$pct`%) are in **3rd Year**, `r get_prof("year", "1st Year")$count` (`r get_prof("year", "1st Year")$pct`%) in 1st Year, and `r get_prof("year", "2nd Year")$count` (`r get_prof("year", "2nd Year")$pct`%) in 2nd Year.
+- **Residence:** `r get_prof("residence", "Hostel")$count` (`r get_prof("residence", "Hostel")$pct`%) live in the **Hostel**, and only `r get_prof("residence", "Day Scholar")$count` (`r get_prof("residence", "Day Scholar")$pct`%) are Day Scholars.
+- **Gender:** `r get_prof("gender", "Male")$count` (`r get_prof("gender", "Male")$pct`%) are Male and `r get_prof("gender", "Female")$count` (`r get_prof("gender", "Female")$pct`%) are Female.
+- **Rare groups (< 8 students):** Day Scholars (`r get_prof("residence", "Day Scholar")$count`), Vegans (`r get_prof("diet", "Vegan")$count`), and Cash payers (`r get_prof("payment", "Cash")$count`) each have fewer than 8 responses. Per project rules, we report **"too few responses"** rather than making subgroup claims for them.
+
+# Cleaning
+
+All cleaning steps live in `R/01_clean.R` and keep the raw CSV untouched. Key steps and quality checks:
+
+1. **Duplicate check:** `r dq_tbl$value[dq_tbl$metric == "Exact duplicate rows (all cols)"]` exact duplicate rows and `r dq_tbl$value[dq_tbl$metric == "Duplicate rows (excluding Timestamp)"]` duplicate answer rows (excluding `Timestamp`).
+2. **Empty columns dropped (`r nrow(dropped_df)` columns, 100% NA):** `Untitled Question`, all four dining facility-rating columns (*Infrastructure and Seating*, *Staff Friendliness*, *Operating Hours/Availability*, *Waste Management/Cleanliness*), and the *Nutrition Information* question were completely empty (`0 / 88` responses) and were dropped.
+3. **Messy text-to-number fixes (`r dq_tbl$value[dq_tbl$metric == "Distinct rows with text-to-number fixes"]` distinct rows fixed, 0 NAs left):**
+   - `meals_per_day` (`r dq_tbl$value[dq_tbl$metric == "Rows fixed in meals_per_day"]` rows): `"1-2 meals"` parsed to `1` (conservative lower bound via `readr::parse_number()`) and `"1 times"` parsed to `1`.
+   - `spend` (`r dq_tbl$value[dq_tbl$metric == "Rows fixed in spend"]` rows): stripped `"Rs."` prefix and parsed `"Rs. 2,000/-"` to `2000` and `"around 1000"` to `1000`.
+   - `outside_orders` (`r dq_tbl$value[dq_tbl$metric == "Rows fixed in outside_orders"]` rows): converted `"twice a week"` to `2` and parsed `"1 times"` to `1`.
+4. **Multi-select splitting:** Split `outlets` (`9` options), `factors` (`11` options), and `improvements` (`11` options) into `31` binary `0/1` columns using `stringr::str_detect(..., fixed())`, with `0` count mismatches across all `88` rows.
+5. **Derived helper columns & ordered factors:** Created ordered factors for `year` and `spend_band` (`Low (<= Rs 1,000)`, `Medium (Rs 1,001-2,000)`, `High (> Rs 2,000)`), plus binary flags:
+   - `satisfied`: rating `>= 4` (`r get_flag("satisfied")$count` students, `r get_flag("satisfied")$pct`%).
+   - `skips_breakfast`: skips Breakfast most often (`r get_flag("skips_breakfast")$count` students, `r get_flag("skips_breakfast")$pct`%).
+   - `heavy_outside`: orders outside `>= 2` times/week (`r get_flag("heavy_outside")$count` students, `r get_flag("heavy_outside")$pct`%), separating the top fifth from the `r round(100 - get_flag("heavy_outside")$pct, 1)`% who order `0` or `1` time per week.
+
+```{r tbl-dq}
+knitr::kable(dq_tbl, caption = "Table 1: Data Quality and Cleaning Summary")
+```
+
+# Overall Analysis
+
+Before exploring subgroups, we inspect the big-picture metrics across all `r n_total` respondents (`R/02_overall.R`):
+
+- **Monthly extra food spend (excluding mess fees):** Mean = **Rs `r get_num("spend", "mean")`**, Median = **Rs `r get_num("spend", "median")`** (range Rs `r get_num("spend", "min")` to Rs `r get_num("spend", "max")`). Half of students (`r get_prof("spend_band", "Medium (Rs 1,001-2,000)")$pct`%, `r get_prof("spend_band", "Medium (Rs 1,001-2,000)")$count`) fall in the Medium band (`Rs 1,001-2,000`), `r get_prof("spend_band", "Low (<= Rs 1,000)")$pct`% (`r get_prof("spend_band", "Low (<= Rs 1,000)")$count`) spend `<= Rs 1,000`, and `r get_prof("spend_band", "High (> Rs 2,000)")$pct`% (`r get_prof("spend_band", "High (> Rs 2,000)")$count`) spend `> Rs 2,000`.
+- **Meals & outside ordering:** Students eat an average of **`r get_num("meals_per_day", "mean")`** campus outlet meals/day (median `r get_num("meals_per_day", "median")`) and order outside food **`r get_num("outside_orders", "mean")`** times/week (median `r get_num("outside_orders", "median")`).
+- **Diet & payment:** Vegetarian (`r get_prof("diet", "Vegetarian")$count`, `r get_prof("diet", "Vegetarian")$pct`%) and Non-Vegetarian (`r get_prof("diet", "Non-Vegetarian")$count`, `r get_prof("diet", "Non-Vegetarian")$pct`%) are equal in size, followed by Eggetarian (`r get_prof("diet", "Eggetarian")$count`, `r get_prof("diet", "Eggetarian")$pct`%) and Vegan (`r get_prof("diet", "Vegan")$count`, too few responses). UPI/QR Code accounts for **`r get_prof("payment", "UPI/QR Code")$pct`%** (`r get_prof("payment", "UPI/QR Code")$count` of `r n_total`).
+- **Overall satisfaction:** Mean = **`r get_num("satisfaction", "mean")` / 5**, Median = **`r get_num("satisfaction", "median")`**. Nearly half (`r overall_r$satisfaction_dist$pct[3]`%, `r overall_r$satisfaction_dist$count[3]`) chose neutral `3`, `r sum(overall_r$satisfaction_dist$count[1:2])` (`r sum(overall_r$satisfaction_dist$pct[1:2])`%) are dissatisfied (`1` or `2`), and only **`r get_flag("satisfied")$count` (`r get_flag("satisfied")$pct`%)** are satisfied (`4` or `5`).
+- **Meal skipping:** **`r get_prof("skipped_meal", "Breakfast")$pct`%** (`r get_prof("skipped_meal", "Breakfast")$count` of `r n_total`) skip **Breakfast** most often, far ahead of Lunch (`r get_prof("skipped_meal", "Lunch")$pct`%) and Evening Snack (`r get_prof("skipped_meal", "Evening Snack")$pct`%).
+
+```{r fig-overall-sat, out.width="82%"}
+knitr::include_graphics(file.path(plot_dir, "01_overall_satisfaction.png"))
+```
+
+```{r fig-overall-outlets, out.width="85%"}
+knitr::include_graphics(file.path(plot_dir, "02_outlet_popularity.png"))
+```
+
+```{r tbl-factors-improve}
+top_fac <- overall_r$factors |> dplyr::select(Rank = rank, Factor = option_label, Count = count, `Pct (%)` = pct)
+top_imp <- overall_r$improvements |> dplyr::select(Rank = rank, Improvement = option_label, Count = count, `Pct (%)` = pct)
+knitr::kable(top_fac, caption = "Table 2: Factors Rated Important When Choosing a Food Outlet")
+knitr::kable(top_imp, caption = "Table 3: Biggest Wanted Improvements in Campus Food")
+```
+
+# EDA Facts
+
+Using `R/03_eda.R`, we compared satisfaction, spend, breakfast skipping, and outside ordering across Year, Gender, Diet (excluding Vegan `n = 1`), Spend Band, and each outlet with at least 8 users (excluding Campus Café `n = 7`, Chai Vyanjan `n = 6`, Other Stalls `n = 5`, and Outside Delivery `n = 1`).
+
+## Statistically Supported Facts (Chi-Square `p < 0.05`)
+
+1. **Spend Band vs. Satisfaction (`p = `r get_test("Spend Band vs Satisfied")$p_value``):** High spenders (`> Rs 2,000`) are much more likely to be satisfied (`r get_grp("Spend Band", "High (> Rs 2,000)")$pct_satisfied`%, `r sum(df$spend_band == "High (> Rs 2,000)" & df$satisfied == 1)`/`r get_grp("Spend Band", "High (> Rs 2,000)")$n`) than Medium (`r get_grp("Spend Band", "Medium (Rs 1,001-2,000)")$pct_satisfied`%, `r sum(df$spend_band == "Medium (Rs 1,001-2,000)" & df$satisfied == 1)`/`r get_grp("Spend Band", "Medium (Rs 1,001-2,000)")$n`) and Low (`r get_grp("Spend Band", "Low (<= Rs 1,000)")$pct_satisfied`%, `r sum(df$spend_band == "Low (<= Rs 1,000)" & df$satisfied == 1)`/`r get_grp("Spend Band", "Low (<= Rs 1,000)")$n`) spenders.
+2. **Nescafé Usage vs. Satisfaction (`p = `r get_test("Nescafé User vs Satisfied")$p_value``):** Nescafé users (`n = `r get_out("Nescafé", "Uses Outlet")$n``) are more than twice as likely to be satisfied (`r get_out("Nescafé", "Uses Outlet")$pct_satisfied`%, `r sum(df$outlet_nescafe == 1 & df$satisfied == 1)`/`r get_out("Nescafé", "Uses Outlet")$n`) as non-users (`r get_out("Nescafé", "Does Not Use")$pct_satisfied`%, `r sum(df$outlet_nescafe == 0 & df$satisfied == 1)`/`r get_out("Nescafé", "Does Not Use")$n`).
+3. **Diet vs. Lower Prices Demand (`p = `r get_q(quest_r$q4_comp, "Vegetarian", "Wants Lower Prices")$p_value``):** Vegetarians ask for Lower Prices significantly more often (`r get_q(quest_r$q4_comp, "Vegetarian", "Wants Lower Prices")$pct_yes`%, `r get_q(quest_r$q4_comp, "Vegetarian", "Wants Lower Prices")$count_yes`/`r get_q(quest_r$q4_comp, "Vegetarian", "Wants Lower Prices")$n`) than Non-Vegetarians (`r get_q(quest_r$q4_comp, "Non-Vegetarian", "Wants Lower Prices")$pct_yes`%, `r get_q(quest_r$q4_comp, "Non-Vegetarian", "Wants Lower Prices")$count_yes`/`r get_q(quest_r$q4_comp, "Non-Vegetarian", "Wants Lower Prices")$n`) and Eggetarians (`r get_q(quest_r$q4_comp, "Eggetarian", "Wants Lower Prices")$pct_yes`%, `r get_q(quest_r$q4_comp, "Eggetarian", "Wants Lower Prices")$count_yes`/`r get_q(quest_r$q4_comp, "Eggetarian", "Wants Lower Prices")$n`).
+
+## Noticeable Patterns Only (Not Confirmed at `p < 0.05` — May Be Luck)
+
+- **Yadav Canteen & Breakfast Skipping (`p = `r get_test("Yadav Canteen User vs Skips Breakfast")$p_value``):** Yadav Canteen users skip breakfast less often (`r get_out("Yadav Canteen", "Uses Outlet")$pct_skips_breakfast`% vs `r get_out("Yadav Canteen", "Does Not Use")$pct_skips_breakfast`% for non-users).
+- **Diet & Food Channels:** Vegetarians show higher heavy outside ordering (`r get_grp("Diet", "Vegetarian")$pct_heavy_outside`% vs `r get_grp("Diet", "Non-Vegetarian")$pct_heavy_outside`% Non-Veg, `p = `r get_test("Diet vs Heavy Outside Ordering")$p_value``), higher Hostel Mess use (`r get_q(quest_r$q4_comp, "Vegetarian", "Uses Hostel Mess")$pct_yes`% vs `r get_q(quest_r$q4_comp, "Non-Vegetarian", "Uses Hostel Mess")$pct_yes`%, `p = `r get_test("Diet vs Uses Hostel Mess")$p_value``), and lower Night Canteen use (`r get_q(quest_r$q4_comp, "Vegetarian", "Uses Night Canteen")$pct_yes`% vs `r get_q(quest_r$q4_comp, "Non-Vegetarian", "Uses Night Canteen")$pct_yes`%, `p = `r get_test("Diet vs Uses Night Canteen")$p_value``).
+- **Night Canteen & Breakfast Skipping (`p = `r get_test("Night Canteen User vs Skips Breakfast")$p_value``):** `r get_out("Night Canteen", "Uses Outlet")$pct_skips_breakfast`% of Night Canteen users skip breakfast vs `r get_out("Night Canteen", "Does Not Use")$pct_skips_breakfast`% of non-users (not statistically supported).
+- **Gender & Linear Correlations:** Male and Female students look nearly identical across all outcomes (`p >= `r min(eda_r$chisq_tests$p_value[eda_r$chisq_tests$x_var == "gender"])``), and all pairwise Pearson correlations between numeric columns are weak (`|r| <= `r max(abs(eda_r$correlations$r))``, all `p >= `r min(eda_r$correlations$p_value)``).
+
+```{r fig-eda, out.width="88%"}
+knitr::include_graphics(file.path(plot_dir, "06_eda_outlet_satisfaction.png"))
+knitr::include_graphics(file.path(plot_dir, "07_eda_correlations_heatmap.png"))
+```
+
+# Questions and Answers
+
+Five focused research questions were drawn directly from the strongest Phase 2 and Phase 3 findings (`R/04_questions.R`):
+
+### Q1. Why are high spenders (> Rs 2,000/month) much more satisfied than low or medium spenders? {-}
+High spenders (`n = `r quest_r$q1_numeric$n[1]``) eat fewer campus outlet meals per day (`r quest_r$q1_numeric$mean_meals_per_day[1]` vs `r quest_r$q1_numeric$mean_meals_per_day[2]`), order outside slightly more (`r quest_r$q1_numeric$mean_outside_orders[1]` vs `r quest_r$q1_numeric$mean_outside_orders[2]`/week; `r quest_r$q1_numeric$pct_heavy_outside[1]`% heavy vs `r quest_r$q1_numeric$pct_heavy_outside[2]`%), and use Nescafé more (`r get_q(quest_r$q1_comp, "High (> Rs 2,000)", "Uses Nescafé")$pct_yes`% vs `r get_q(quest_r$q1_comp, "Low/Med (<= Rs 2,000)", "Uses Nescafé")$pct_yes`%) while using Yadav Canteen less (`r get_q(quest_r$q1_comp, "High (> Rs 2,000)", "Uses Yadav Canteen")$pct_yes`% vs `r get_q(quest_r$q1_comp, "Low/Med (<= Rs 2,000)", "Uses Yadav Canteen")$pct_yes`%). None of those single item gaps reaches `p < 0.05` (`p = `r min(quest_r$q1_comp$p_value)`` to `r max(quest_r$q1_comp$p_value)`), and high spenders still ask for Better Quality (`r get_q(quest_r$q1_comp, "High (> Rs 2,000)", "Wants Better Food Quality")$pct_yes`%), Better Hygiene (`r get_q(quest_r$q1_comp, "High (> Rs 2,000)", "Wants Better Hygiene")$pct_yes`%), and Lower Prices (`r get_q(quest_r$q1_comp, "High (> Rs 2,000)", "Wants Lower Prices")$pct_yes`%). Higher budgets appear to buy flexibility rather than eliminating complaints, though the survey did not record *which* exact items high spenders buy.
+
+```{r fig-q1, out.width="84%"}
+knitr::include_graphics(file.path(plot_dir, "09_q1_high_spenders.png"))
+```
+
+### Q2. What sets Nescafé users apart from non-users, and does using Nescafé explain their higher satisfaction? {-}
+Nescafé users (`n = `r quest_r$q2_numeric$n[1]``) pick more outlets overall (`r quest_r$q2_numeric$mean_outlets_picked[1]` vs `r quest_r$q2_numeric$mean_outlets_picked[2]`), spend slightly more (Rs `r quest_r$q2_numeric$mean_spend[1]` vs Rs `r quest_r$q2_numeric$mean_spend[2]`), and show higher satisfaction within **every** spend band (`r get_nes_band("Low", "User")`% vs `r get_nes_band("Low", "NonUser")`% in Low, `r get_nes_band("Medium", "User")`% vs `r get_nes_band("Medium", "NonUser")`% in Medium, and `r get_nes_band("High", "User")`% vs `r get_nes_band("High", "NonUser")`% in High). Still, their improvement requests match non-users (`r get_q(quest_r$q2_comp, "Nescafé User", "Wants Better Hygiene")$pct_yes`% Hygiene, `r get_q(quest_r$q2_comp, "Nescafé User", "Wants Better Quality")$pct_yes`% Quality, `r get_q(quest_r$q2_comp, "Nescafé User", "Wants Lower Prices")$pct_yes`% Lower Prices). Because the survey measured only overall campus satisfaction rather than per-outlet ratings, we cannot prove Nescafé directly caused the higher rating.
+
+### Q3. Who skips breakfast most often, and how is skipping breakfast linked to outlet choices? {-}
+Breakfast skipping (`r get_flag("skips_breakfast")$pct`%) cuts evenly across Year, Gender, and Diet (`p >= `r min(get_test("Year vs Skips Breakfast")$p_value, get_test("Gender vs Skips Breakfast")$p_value, get_test("Diet vs Skips Breakfast")$p_value)``). The main contrast is outlet choice: only `r get_q(quest_r$q3_comp, "Skips Breakfast (n=62)", "Uses Yadav Canteen")$pct_yes`% of breakfast skippers use Yadav Canteen vs `r get_q(quest_r$q3_comp, "Skips Other/Rarely (n=26)", "Uses Yadav Canteen")$pct_yes`% of non-skippers (`p = `r get_q(quest_r$q3_comp, "Skips Breakfast (n=62)", "Uses Yadav Canteen")$p_value``), while Night Canteen leans higher among skippers (`r get_q(quest_r$q3_comp, "Skips Breakfast (n=62)", "Uses Night Canteen")$pct_yes`% vs `r get_q(quest_r$q3_comp, "Skips Other/Rarely (n=26)", "Uses Night Canteen")$pct_yes`%, `p = `r get_q(quest_r$q3_comp, "Skips Breakfast (n=62)", "Uses Night Canteen")$p_value``), and skippers are twice as likely to eat `0` campus outlet meals per day (`r quest_r$q3_numeric$pct_zero_campus_meals[1]`% vs `r quest_r$q3_numeric$pct_zero_campus_meals[2]`%). Sleep hours and class schedules were not collected, so the root cause cannot be verified.
+
+```{r fig-q3, out.width="82%"}
+knitr::include_graphics(file.path(plot_dir, "11_q3_breakfast_skipping.png"))
+```
+
+### Q4. Do Vegetarian and Non-Vegetarian students rely on different food channels or want different improvements? {-}
+Vegetarians (`n = `r get_grp("Diet", "Vegetarian")$n``) use Hostel Mess more (`r get_q(quest_r$q4_comp, "Vegetarian", "Uses Hostel Mess")$pct_yes`% vs `r get_q(quest_r$q4_comp, "Non-Vegetarian", "Uses Hostel Mess")$pct_yes`%, `p = `r get_q(quest_r$q4_comp, "Vegetarian", "Uses Hostel Mess")$p_value``), Night Canteen less (`r get_q(quest_r$q4_comp, "Vegetarian", "Uses Night Canteen")$pct_yes`% vs `r get_q(quest_r$q4_comp, "Non-Vegetarian", "Uses Night Canteen")$pct_yes`%, `p = `r get_q(quest_r$q4_comp, "Vegetarian", "Uses Night Canteen")$p_value``), and order outside `>= 2` times/week three times as often (`r get_q(quest_r$q4_comp, "Vegetarian", "Heavy Outside Orders (>=2/wk)")$pct_yes`% vs `r get_q(quest_r$q4_comp, "Non-Vegetarian", "Heavy Outside Orders (>=2/wk)")$pct_yes`%, `p = `r get_q(quest_r$q4_comp, "Vegetarian", "Heavy Outside Orders (>=2/wk)")$p_value``), while requesting **Lower Prices** significantly more often (`r get_q(quest_r$q4_comp, "Vegetarian", "Wants Lower Prices")$pct_yes`% vs `r get_q(quest_r$q4_comp, "Non-Vegetarian", "Wants Lower Prices")$pct_yes`% Non-Veg, `p = `r get_q(quest_r$q4_comp, "Vegetarian", "Wants Lower Prices")$p_value``). Overall satisfaction does not differ reliably (`p = `r get_q(quest_r$q4_comp, "Vegetarian", "Satisfied (4-5)")$p_value``), and Vegans (`n = `r get_prof("diet", "Vegan")$count``) have too few responses.
+
+```{r fig-q4, out.width="84%"}
+knitr::include_graphics(file.path(plot_dir, "12_q4_diet_channels.png"))
+```
+
+### Q5. Do dissatisfied students ask for different improvements than neutral or satisfied students? {-}
+No—improvement demands are campus-wide. Across Dissatisfied (`1-2`, `n = `r sum(df$satisfaction <= 2)``), Neutral (`3`, `n = `r sum(df$satisfaction == 3)``), and Satisfied (`4-5`, `n = `r sum(df$satisfaction >= 4)``) students, nearly half in every tier ask for Better Hygiene (`r get_q(quest_r$q5_comp, "Dissatisfied (1-2)", "Better Hygiene/Cleanliness")$pct_yes`%, `r get_q(quest_r$q5_comp, "Neutral (3)", "Better Hygiene/Cleanliness")$pct_yes`%, `r get_q(quest_r$q5_comp, "Satisfied (4-5)", "Better Hygiene/Cleanliness")$pct_yes`%; `p = `r get_q(quest_r$q5_comp, "Dissatisfied (1-2)", "Better Hygiene/Cleanliness")$p_value``), Better Food Quality (`r get_q(quest_r$q5_comp, "Dissatisfied (1-2)", "Better Food Quality")$pct_yes`%, `r get_q(quest_r$q5_comp, "Neutral (3)", "Better Food Quality")$pct_yes`%, `r get_q(quest_r$q5_comp, "Satisfied (4-5)", "Better Food Quality")$pct_yes`%; `p = `r get_q(quest_r$q5_comp, "Dissatisfied (1-2)", "Better Food Quality")$p_value``), and Lower Prices (`r get_q(quest_r$q5_comp, "Dissatisfied (1-2)", "Lower Prices")$pct_yes`%, `r get_q(quest_r$q5_comp, "Neutral (3)", "Lower Prices")$pct_yes`%, `r get_q(quest_r$q5_comp, "Satisfied (4-5)", "Lower Prices")$pct_yes`%; `p = `r get_q(quest_r$q5_comp, "Dissatisfied (1-2)", "Lower Prices")$p_value``). Because the four facility-rating columns were completely empty, the survey cannot tell which specific physical facility aspect drove low satisfaction.
+
+# Data Mining Results
+
+## Association Rules (`arules / apriori`)
+
+Using `support >= 0.14` (`>= 13` students), `confidence >= 0.65`, and `lift > 1.15`, we found **`r nrow(mining_r$rules_df)` non-redundant rules**. Top rules highlight clear patterns of complaints and habits:
+
+- `` `r get_rule(1)$rules` `` (`count = `r get_rule(1)$count``, `conf = `r get_rule(1)$confidence``, `lift = `r get_rule(1)$lift``)
+- `` `r get_rule(3)$rules` `` (`count = `r get_rule(3)$count``, `conf = `r get_rule(3)$confidence``, `lift = `r get_rule(3)$lift``)
+- `` `r get_rule(5)$rules` `` (`count = `r get_rule(5)$count``, `conf = `r get_rule(5)$confidence``, `lift = `r get_rule(5)$lift``)
+- `` `r get_rule(14)$rules` `` (`count = `r get_rule(14)$count``, `conf = `r get_rule(14)$confidence``, `lift = `r get_rule(14)$lift``)
+- `` `r get_rule(21)$rules` `` (`count = `r get_rule(21)$count``, `conf = `r get_rule(21)$confidence``, `lift = `r get_rule(21)$lift``)
+
+```{r tbl-rules}
+knitr::kable(utils::head(mining_r$rules_df, 10), caption = "Table 4: Top 10 Non-Redundant Association Rules (Sorted by Lift)")
+```
+
+## Decision Tree (`rpart`)
+
+Predicting `satisfied` (`rating >= 4`), the majority-class baseline (`Not_Satisfied`) is **`r get_tm("Baseline accuracy (%)")`%**. With 10-fold cross-validation (`cp = `r get_tm("Best CV cp")``), CV accuracy is **`r get_tm("10-fold CV accuracy - pruned (%)")`%** (in-sample accuracy = `r get_tm("In-sample accuracy of plotted tree (%)")`%).
+
+In plain language: first, the tree splits at monthly spend `< Rs 2,250`, where `r get_leaf("low_spend")$pct_unsat`% of the `r get_leaf("low_spend")$n` lower/medium spenders are not satisfied. Among the `r get_leaf("high_hyg")$n + get_leaf("high_nohyg")$n` students spending `>= Rs 2,250`, satisfaction splits on whether Hygiene/Cleanliness is a top decision factor: high spenders who prioritize Hygiene (`n = `r get_leaf("high_hyg")$n``) are still `r get_leaf("high_hyg")$pct_unsat`% unsatisfied, whereas high spenders who do not flag Hygiene (`n = `r get_leaf("high_nohyg")$n``) are `r get_leaf("high_nohyg")$pct_sat`% satisfied.
+
+```{r fig-tree, out.width="84%"}
+knitr::include_graphics(file.path(plot_dir, "16_mining_decision_tree.png"))
+```
+
+# Dashboard Description
+
+The interactive dashboard (`app/app.R`) loads precomputed results from `outputs/` for fast startup and provides **Year, Diet, and Gender** sidebar filters that apply across all seven tabs:
+
+1. **Overview:** Live `n = X` KPI cards and `plotly` bars for satisfaction, outlets, factors, and improvements.
+2. **EDA Facts:** Interactive group comparison selector (flagging groups `< 8` in grey), live correlation heatmap, and searchable chi-square test table.
+3. **Questions & Answers:** Dropdown for Q1–Q5 with triggering facts, plain-language summaries, and live filtered `plotly` charts.
+4. **Association Rules:** Interactive Lift vs. Confidence bubble chart and `DT` table showing live match counts inside the active filter.
+5. **Decision Tree:** `rpart.plot` visual, live leaf satisfaction bars, and baseline vs. CV accuracy summary.
+6. **Recommendations:** Actionable takeaways for administration, vendors, and students alongside live filtered priority percentages.
+7. **Data:** Searchable `DT` table of filtered records with one-click CSV download.
+
+Every view prints `n = X` and displays an automatic warning banner whenever fewer than `10` students remain.
+
+# Recommendations
+
+1. **Prioritize campus-wide hygiene audits (Administration):** Better Hygiene/Cleanliness (`r get_imp("Better Hygiene/Cleanliness")$pct`%) is the #1 requested improvement across every satisfaction level and is the exact split holding back satisfaction even among high spenders.
+2. **Improve Hostel Mess taste and quality (Administration & Mess Committee):** Better Food Quality (`r get_imp("Better Food Quality")$pct`%) is the #2 improvement overall, and association rules tie Hostel Mess directly to Better Taste (`conf = `r get_rule(5)$confidence``, `lift = `r get_rule(5)$lift``).
+3. **Introduce quick, affordable breakfast options (Vendors & Administration):** `r get_flag("skips_breakfast")$pct`% skip breakfast most often (`r get_out("Night Canteen", "Uses Outlet")$pct_skips_breakfast`% among Night Canteen users), whereas Yadav Canteen users skip far less (`r get_out("Yadav Canteen", "Uses Outlet")$pct_skips_breakfast`%). Grab-and-go morning combos near hostels could recover missed meals.
+4. **Offer affordable vegetarian & Nescafé value combos (Vendors):** Vegetarians request Lower Prices significantly more often (`r get_q(quest_r$q4_comp, "Vegetarian", "Wants Lower Prices")$pct_yes`% vs `r get_q(quest_r$q4_comp, "Non-Vegetarian", "Wants Lower Prices")$pct_yes`% Non-Veg, `p = `r get_q(quest_r$q4_comp, "Vegetarian", "Wants Lower Prices")$p_value``) and order outside heavily (`r get_grp("Diet", "Vegetarian")$pct_heavy_outside`%), while Nescafé users pair Better Quality + Lower Prices (`lift = `r get_rule(1)$lift``).
+5. **Fix form validation for future surveys (Administration):** Make the dining-facility rating matrix and nutrition question required or properly linked in the next Google Form wave so facility-level scores are captured.
+
+# Limitations
+
+- **Small sample size (`n = `r n_total``):** Reduces statistical power for detecting modest differences and leaves Day Scholars (`r get_prof("residence", "Day Scholar")$count`), Vegans (`r get_prof("diet", "Vegan")$count`), Cash payers (`r get_prof("payment", "Cash")$count`), and four smaller outlets (`<= 7` users) with too few responses for valid subgroup claims.
+- **Biased sample composition:** `r get_prof("year", "3rd Year")$pct`% of respondents are 3rd-year students, `r get_prof("residence", "Hostel")$pct`% live in hostels, and `r get_prof("gender", "Male")$pct`% are male—all collected within a single 38-minute burst—so findings mostly describe 3rd-year hostel residents.
+- **Self-reported estimates:** Monthly spending (Rs `r get_num("spend", "min")`–`r get_num("spend", "max")`), meals per day, and weekly outside orders rely on student recall and rough text entries (e.g., `"1-2 meals"`, `"around 1000"`).
+- **Empty facility-rating and nutrition columns:** All four dining facility ratings (Infrastructure/Seating, Staff Friendliness, Operating Hours, Waste Management/Cleanliness) and the nutrition question had `0 / `r n_total`` non-missing answers and had to be excluded.
+
+# Conclusion
+
+Across `r n_total` surveyed students, overall campus food satisfaction is lukewarm (mean = `r get_num("satisfaction", "mean")` / 5, only `r get_flag("satisfied")$pct`% satisfied), `r get_flag("skips_breakfast")$pct`% skip breakfast most often, and UPI/QR Code payments are nearly universal (`r get_prof("payment", "UPI/QR Code")$pct`%). Statistical tests and data mining reinforce a consistent story: students with larger monthly budgets (`> Rs 2,000`) and Nescafé users report higher satisfaction, yet demands for **Better Hygiene (`r get_imp("Better Hygiene/Cleanliness")$pct`%)**, **Better Food Quality (`r get_imp("Better Food Quality")$pct`%)**, and **Lower Prices (`r get_imp("Lower Prices")$pct`% — especially `r get_q(quest_r$q4_comp, "Vegetarian", "Wants Lower Prices")$pct_yes`% among Vegetarians)** span the entire campus. Focusing first on hygiene enforcement, mess food quality, vegetarian affordability, and quick breakfast availability directly addresses the biggest evidence-backed gaps.
+

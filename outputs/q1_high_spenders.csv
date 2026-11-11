@@ -1,0 +1,23 @@
+group,n,count_yes,pct_yes,item,column_name,p_value
+"High (> Rs 2,000)",21,12,57.1,Uses Hostel Mess,outlet_hostel_mess,0.7935
+"Low/Med (<= Rs 2,000)",67,34,50.7,Uses Hostel Mess,outlet_hostel_mess,0.7935
+"High (> Rs 2,000)",21,12,57.1,Uses Nescafé,outlet_nescafe,0.2195
+"Low/Med (<= Rs 2,000)",67,26,38.8,Uses Nescafé,outlet_nescafe,0.2195
+"High (> Rs 2,000)",21,8,38.1,Uses Snacker,outlet_snacker,1
+"Low/Med (<= Rs 2,000)",67,27,40.3,Uses Snacker,outlet_snacker,1
+"High (> Rs 2,000)",21,4,19,Uses Yadav Canteen,outlet_yadav_canteen,0.3501
+"Low/Med (<= Rs 2,000)",67,22,32.8,Uses Yadav Canteen,outlet_yadav_canteen,0.3501
+"High (> Rs 2,000)",21,4,19,Uses Night Canteen,outlet_night_canteen,0.7642
+"Low/Med (<= Rs 2,000)",67,17,25.4,Uses Night Canteen,outlet_night_canteen,0.7642
+"High (> Rs 2,000)",21,11,52.4,Factor: Price/Affordability,factor_price_affordability,1
+"Low/Med (<= Rs 2,000)",67,34,50.7,Factor: Price/Affordability,factor_price_affordability,1
+"High (> Rs 2,000)",21,12,57.1,Factor: Food Quality,factor_food_quality,0.9818
+"Low/Med (<= Rs 2,000)",67,36,53.7,Factor: Food Quality,factor_food_quality,0.9818
+"High (> Rs 2,000)",21,9,42.9,Factor: Hygiene,factor_hygiene_cleanliness,0.7935
+"Low/Med (<= Rs 2,000)",67,33,49.3,Factor: Hygiene,factor_hygiene_cleanliness,0.7935
+"High (> Rs 2,000)",21,11,52.4,Wants Lower Prices,improve_lower_prices,0.3974
+"Low/Med (<= Rs 2,000)",67,26,38.8,Wants Lower Prices,improve_lower_prices,0.3974
+"High (> Rs 2,000)",21,12,57.1,Wants Better Food Quality,improve_better_food_quality,0.6169
+"Low/Med (<= Rs 2,000)",67,32,47.8,Wants Better Food Quality,improve_better_food_quality,0.6169
+"High (> Rs 2,000)",21,11,52.4,Wants Better Hygiene,improve_better_hygiene_cleanliness,1
+"Low/Med (<= Rs 2,000)",67,35,52.2,Wants Better Hygiene,improve_better_hygiene_cleanliness,1

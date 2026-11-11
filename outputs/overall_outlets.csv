@@ -1,0 +1,10 @@
+rank,option_label,column_name,count,pct
+1,Hostel Mess,outlet_hostel_mess,46,52.3
+2,Nescafé,outlet_nescafe,38,43.2
+3,Snacker,outlet_snacker,35,39.8
+4,Yadav Canteen,outlet_yadav_canteen,26,29.5
+5,Night Canteen,outlet_night_canteen,21,23.9
+6,Campus Café,outlet_campus_cafe,7,8
+7,Chai Vyanjan,outlet_chai_vyanjan,6,6.8
+8,Other Campus Food Stalls/Carts,outlet_other_campus_food_stalls_carts,5,5.7
+9,Outside Food Delivery (Swiggy/Zomato),outlet_outside_food_delivery_swiggy_zomato,1,1.1

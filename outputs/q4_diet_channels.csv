@@ -1,0 +1,25 @@
+group,n,count_yes,pct_yes,item,column_name,p_value
+Eggetarian,9,4,44.4,Uses Hostel Mess,outlet_hostel_mess,0.0754
+Non-Vegetarian,39,16,41,Uses Hostel Mess,outlet_hostel_mess,0.0754
+Vegetarian,39,26,66.7,Uses Hostel Mess,outlet_hostel_mess,0.0754
+Eggetarian,9,3,33.3,Uses Night Canteen,outlet_night_canteen,0.1044
+Non-Vegetarian,39,13,33.3,Uses Night Canteen,outlet_night_canteen,0.1044
+Vegetarian,39,5,12.8,Uses Night Canteen,outlet_night_canteen,0.1044
+Eggetarian,9,1,11.1,Heavy Outside Orders (>=2/wk),heavy_outside,0.0648
+Non-Vegetarian,39,4,10.3,Heavy Outside Orders (>=2/wk),heavy_outside,0.0648
+Vegetarian,39,12,30.8,Heavy Outside Orders (>=2/wk),heavy_outside,0.0648
+Eggetarian,9,3,33.3,Satisfied (4-5),satisfied,0.4301
+Non-Vegetarian,39,8,20.5,Satisfied (4-5),satisfied,0.4301
+Vegetarian,39,13,33.3,Satisfied (4-5),satisfied,0.4301
+Eggetarian,9,1,11.1,Wants More Variety,improve_more_variety,1
+Non-Vegetarian,39,5,12.8,Wants More Variety,improve_more_variety,1
+Vegetarian,39,4,10.3,Wants More Variety,improve_more_variety,1
+Eggetarian,9,6,66.7,Wants Better Quality,improve_better_food_quality,0.3345
+Non-Vegetarian,39,16,41,Wants Better Quality,improve_better_food_quality,0.3345
+Vegetarian,39,21,53.8,Wants Better Quality,improve_better_food_quality,0.3345
+Eggetarian,9,1,11.1,Wants Healthy Options,improve_more_healthy_nutritious_options,1
+Non-Vegetarian,39,5,12.8,Wants Healthy Options,improve_more_healthy_nutritious_options,1
+Vegetarian,39,4,10.3,Wants Healthy Options,improve_more_healthy_nutritious_options,1
+Eggetarian,9,4,44.4,Wants Lower Prices,improve_lower_prices,0.0206
+Non-Vegetarian,39,10,25.6,Wants Lower Prices,improve_lower_prices,0.0206
+Vegetarian,39,22,56.4,Wants Lower Prices,improve_lower_prices,0.0206

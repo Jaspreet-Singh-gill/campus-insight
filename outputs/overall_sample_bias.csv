@@ -1,0 +1,11 @@
+variable,category,count,pct,small_group_flag,bias_note
+year,3rd Year,66,75,FALSE,Dominant group (75% of sample); results mostly reflect this group.
+residence,Day Scholar,4,4.5,TRUE,Too few responses (n = 4 < 8); avoid subgroup claims.
+residence,Hostel,84,95.5,FALSE,Dominant group (95.5% of sample); results mostly reflect this group.
+gender,Male,56,63.6,FALSE,Dominant group (63.6% of sample); results mostly reflect this group.
+diet,Vegan,1,1.1,TRUE,Too few responses (n = 1 < 8); avoid subgroup claims.
+payment,Cash,2,2.3,TRUE,Too few responses (n = 2 < 8); avoid subgroup claims.
+payment,UPI/QR Code,86,97.7,FALSE,Dominant group (97.7% of sample); results mostly reflect this group.
+skipped_meal,Breakfast,62,70.5,FALSE,Dominant group (70.5% of sample); results mostly reflect this group.
+skipped_meal,Dinner,1,1.1,TRUE,Too few responses (n = 1 < 8); avoid subgroup claims.
+skipped_meal,I rarely skip meals,5,5.7,TRUE,Too few responses (n = 5 < 8); avoid subgroup claims.

@@ -1,0 +1,22 @@
+variable,category,count,pct,small_group_flag
+year,1st Year,12,13.6,FALSE
+year,2nd Year,10,11.4,FALSE
+year,3rd Year,66,75,FALSE
+residence,Day Scholar,4,4.5,TRUE
+residence,Hostel,84,95.5,FALSE
+gender,Female,32,36.4,FALSE
+gender,Male,56,63.6,FALSE
+diet,Eggetarian,9,10.2,FALSE
+diet,Non-Vegetarian,39,44.3,FALSE
+diet,Vegan,1,1.1,TRUE
+diet,Vegetarian,39,44.3,FALSE
+payment,Cash,2,2.3,TRUE
+payment,UPI/QR Code,86,97.7,FALSE
+skipped_meal,Breakfast,62,70.5,FALSE
+skipped_meal,Dinner,1,1.1,TRUE
+skipped_meal,Evening Snack,8,9.1,FALSE
+skipped_meal,I rarely skip meals,5,5.7,TRUE
+skipped_meal,Lunch,12,13.6,FALSE
+spend_band,"Low (<= Rs 1,000)",22,25,FALSE
+spend_band,"Medium (Rs 1,001-2,000)",45,51.1,FALSE
+spend_band,"High (> Rs 2,000)",21,23.9,FALSE

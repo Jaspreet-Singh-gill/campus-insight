@@ -1,0 +1,12 @@
+rank,option_label,column_name,count,pct
+1,Food Quality,factor_food_quality,48,54.5
+2,Price/Affordability,factor_price_affordability,45,51.1
+3,Portion Size,factor_portion_size,43,48.9
+4,Hygiene/Cleanliness,factor_hygiene_cleanliness,42,47.7
+5,Taste,factor_taste,39,44.3
+6,Healthy/Nutritious Options,factor_healthy_nutritious_options,9,10.2
+7,Location/Convenience,factor_location_convenience,8,9.1
+8,Variety of Food,factor_variety_of_food,7,8
+9,Waiting Time,factor_waiting_time,6,6.8
+10,Availability,factor_availability,5,5.7
+11,Seating/Ambience,factor_seating_ambience,5,5.7

@@ -1,0 +1,9 @@
+metric,value
+Majority class,Not_Satisfied
+Baseline accuracy (%),72.7
+10-fold CV accuracy - pruned (%),73.9
+10-fold CV accuracy - cp=0.01 (%),72.7
+In-sample accuracy of plotted tree (%),79.5
+Best CV cp,0.0625
+Splits in best-CV pruned tree,2
+Splits in plotted tree,2

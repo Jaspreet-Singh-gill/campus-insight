@@ -1,0 +1,21 @@
+col_index,raw_name,non_missing,missing,missing_pct
+1,Timestamp,88,0,0
+2,Untitled Question,0,88,100
+3,What is your current year of study?,88,0,0
+4,Where do you currently live?,88,0,0
+5,What is your gender?,88,0,0
+6,What is your dietary preference?,88,0,0
+7,Which food outlets do you regularly use?,88,0,0
+8,"On average, how many meals do you have from campus food outlets per day?",88,0,0
+9,Which meal do you skip most often?,88,0,0
+10,"Approximately how much do you spend on food per month, excluding prepaid hostel mess fees?",88,0,0
+11,Approximately how many times do you order food from outside the campus in a typical week?,88,0,0
+12,What factors are most important to you when choosing a food outlet?,88,0,0
+13,How satisfied are you overall with the food options available on campus?,88,0,0
+14,What are the biggest improvements you would like to see in campus food options?,88,0,0
+15,Which of the following payment methods do you primarily use for campus food purchases?,88,0,0
+16,How would you rate the following aspects of our campus dining facilities? [Infrastructure and Seating],0,88,100
+17,How would you rate the following aspects of our campus dining facilities? [Staff Friendliness],0,88,100
+18,How would you rate the following aspects of our campus dining facilities? [Operating Hours/Availability],0,88,100
+19,How would you rate the following aspects of our campus dining facilities? [Waste Management/Cleanliness],0,88,100
+20,"How much do you value the inclusion of specific nutrition information (calories, macros) on campus menus?",0,88,100
