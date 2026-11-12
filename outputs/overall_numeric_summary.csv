@@ -1,5 +1,0 @@
-variable,label,n,mean,sd,median,q25,q75,min,max
-spend,"Monthly food spend (Rs, excl. mess)",88,1753.41,849.87,1500,1150,2000,500,4000
-meals_per_day,Campus outlet meals per day,88,0.94,0.73,1,0,1,0,3
-outside_orders,Outside food orders per week,88,0.93,0.83,1,0,1,0,3
-satisfaction,Overall campus food satisfaction (1-5),88,3.01,0.88,3,2.75,4,1,5

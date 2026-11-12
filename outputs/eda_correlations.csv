@@ -1,7 +1,0 @@
-var1,var2,label1,label2,r,p_value,significant,plain_meaning
-spend,meals_per_day,Monthly Spend (Rs),Campus Meals/Day,-0.132,0.2215,FALSE,Weak/no real linear link (may be luck)
-outside_orders,satisfaction,Outside Orders/Week,Satisfaction (1-5),0.112,0.2994,FALSE,Weak/no real linear link (may be luck)
-meals_per_day,satisfaction,Campus Meals/Day,Satisfaction (1-5),0.108,0.3153,FALSE,Weak/no real linear link (may be luck)
-spend,satisfaction,Monthly Spend (Rs),Satisfaction (1-5),0.102,0.3422,FALSE,Weak/no real linear link (may be luck)
-spend,outside_orders,Monthly Spend (Rs),Outside Orders/Week,0.071,0.5133,FALSE,Weak/no real linear link (may be luck)
-meals_per_day,outside_orders,Campus Meals/Day,Outside Orders/Week,-0.063,0.5578,FALSE,Weak/no real linear link (may be luck)
