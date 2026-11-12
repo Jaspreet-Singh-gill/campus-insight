@@ -1,0 +1,323 @@
+"rules","support","confidence","coverage","lift","count"
+"{factor=Food Quality,factor=Portion Size,skip=Breakfast} => {improve=Lower Prices}",0.125,0.846153846153846,0.147727272727273,2.01247401247401,11
+"{improve=Better Food Quality,outlet=Hostel Mess,skip=Breakfast} => {diet=Vegetarian}",0.147727272727273,0.866666666666667,0.170454545454545,1.95555555555556,13
+"{factor=Taste,improve=Better Hygiene/Cleanliness,skip=Breakfast} => {diet=Non-Vegetarian}",0.125,0.846153846153846,0.147727272727273,1.90927021696252,11
+"{factor=Taste,skip=Breakfast,spend=Medium} => {diet=Non-Vegetarian}",0.136363636363636,0.8,0.170454545454545,1.80512820512821,12
+"{improve=Better Taste,outlet=Hostel Mess} => {factor=Hygiene/Cleanliness}",0.136363636363636,0.857142857142857,0.159090909090909,1.79591836734694,12
+"{factor=Taste,outlet=Snacker} => {diet=Non-Vegetarian}",0.125,0.785714285714286,0.159090909090909,1.77289377289377,11
+"{factor=Taste,sat=Neutral,skip=Breakfast} => {diet=Non-Vegetarian}",0.125,0.785714285714286,0.159090909090909,1.77289377289377,11
+"{factor=Food Quality,outlet=Hostel Mess,skip=Breakfast} => {improve=Lower Prices}",0.136363636363636,0.705882352941177,0.193181818181818,1.67885532591415,12
+"{improve=Better Food Quality,improve=Lower Prices} => {outlet=Nescafe}",0.147727272727273,0.722222222222222,0.204545454545455,1.67251461988304,13
+"{factor=Taste,outlet=Nescafe} => {diet=Non-Vegetarian}",0.125,0.733333333333333,0.170454545454545,1.65470085470085,11
+"{factor=Hygiene/Cleanliness,improve=Better Taste} => {outlet=Hostel Mess}",0.136363636363636,0.857142857142857,0.159090909090909,1.63975155279503,12
+"{factor=Hygiene/Cleanliness,sat=Neutral} => {diet=Non-Vegetarian}",0.147727272727273,0.722222222222222,0.204545454545455,1.62962962962963,13
+"{improve=Better Food Quality,outlet=Nescafe} => {improve=Lower Prices}",0.147727272727273,0.684210526315789,0.215909090909091,1.62731152204836,13
+"{factor=Taste,skip=Breakfast} => {diet=Non-Vegetarian}",0.204545454545455,0.72,0.284090909090909,1.62461538461538,18
+"{improve=Better Food Quality,outlet=Hostel Mess} => {diet=Vegetarian}",0.170454545454545,0.714285714285714,0.238636363636364,1.61172161172161,15
+"{improve=Lower Prices,spend=Medium} => {diet=Vegetarian}",0.136363636363636,0.705882352941177,0.193181818181818,1.59276018099548,12
+"{diet=Non-Vegetarian,skip=Breakfast,spend=Medium} => {factor=Taste}",0.136363636363636,0.705882352941177,0.193181818181818,1.59276018099548,12
+"{sat=Neutral,skip=Breakfast,spend=Medium} => {diet=Non-Vegetarian}",0.136363636363636,0.705882352941177,0.193181818181818,1.59276018099548,12
+"{diet=Vegetarian,outlet=Snacker} => {factor=Food Quality}",0.136363636363636,0.857142857142857,0.159090909090909,1.57142857142857,12
+"{factor=Hygiene/Cleanliness,improve=Lower Prices} => {factor=Food Quality}",0.136363636363636,0.857142857142857,0.159090909090909,1.57142857142857,12
+"{diet=Vegetarian,factor=Food Quality,skip=Breakfast} => {improve=Better Food Quality}",0.125,0.785714285714286,0.159090909090909,1.57142857142857,11
+"{diet=Vegetarian,sat=Satisfied} => {factor=Food Quality}",0.125,0.846153846153846,0.147727272727273,1.55128205128205,11
+"{factor=Food Quality,sat=Satisfied} => {diet=Vegetarian}",0.125,0.6875,0.181818181818182,1.55128205128205,11
+"{improve=Lower Prices,outlet=Snacker} => {factor=Food Quality}",0.125,0.846153846153846,0.147727272727273,1.55128205128205,11
+"{diet=Non-Vegetarian,factor=Portion Size} => {factor=Taste}",0.125,0.6875,0.181818181818182,1.55128205128205,11
+"{diet=Non-Vegetarian,sat=Neutral,skip=Breakfast} => {factor=Taste}",0.125,0.6875,0.181818181818182,1.55128205128205,11
+"{factor=Taste,improve=Better Hygiene/Cleanliness} => {diet=Non-Vegetarian}",0.170454545454545,0.681818181818182,0.25,1.53846153846154,15
+"{diet=Vegetarian,factor=Portion Size,skip=Breakfast} => {outlet=Hostel Mess}",0.136363636363636,0.8,0.170454545454545,1.5304347826087,12
+"{factor=Food Quality,factor=Portion Size} => {improve=Lower Prices}",0.159090909090909,0.636363636363636,0.25,1.51351351351351,14
+"{outlet=Night Canteen,skip=Breakfast} => {diet=Non-Vegetarian}",0.136363636363636,0.666666666666667,0.204545454545455,1.5042735042735,12
+"{improve=Better Food Quality,improve=Lower Prices} => {diet=Vegetarian}",0.136363636363636,0.666666666666667,0.204545454545455,1.5042735042735,12
+"{diet=Non-Vegetarian,spend=Medium} => {factor=Taste}",0.159090909090909,0.666666666666667,0.238636363636364,1.5042735042735,14
+"{factor=Taste,spend=Medium} => {diet=Non-Vegetarian}",0.159090909090909,0.666666666666667,0.238636363636364,1.5042735042735,14
+"{diet=Vegetarian,spend=Medium} => {improve=Lower Prices}",0.136363636363636,0.631578947368421,0.215909090909091,1.50213371266003,12
+"{sat=Satisfied,skip=Breakfast} => {outlet=Nescafe}",0.125,0.647058823529412,0.193181818181818,1.4984520123839,11
+"{diet=Non-Vegetarian,skip=Breakfast,spend=Medium} => {sat=Neutral}",0.136363636363636,0.705882352941177,0.193181818181818,1.47899159663866,12
+"{sat=Dissatisfied,skip=Breakfast} => {factor=Portion Size}",0.147727272727273,0.722222222222222,0.204545454545455,1.47803617571059,13
+"{factor=Food Quality,skip=Breakfast} => {improve=Lower Prices}",0.204545454545455,0.620689655172414,0.329545454545455,1.4762348555452,18
+"{diet=Vegetarian,factor=Portion Size} => {improve=Lower Prices}",0.147727272727273,0.619047619047619,0.238636363636364,1.47232947232947,13
+"{factor=Price/Affordability,outlet=Hostel Mess} => {improve=Lower Prices}",0.147727272727273,0.619047619047619,0.238636363636364,1.47232947232947,13
+"{diet=Non-Vegetarian,sat=Neutral} => {factor=Taste}",0.170454545454545,0.652173913043478,0.261363636363636,1.47157190635451,15
+"{factor=Taste,sat=Neutral} => {diet=Non-Vegetarian}",0.170454545454545,0.652173913043478,0.261363636363636,1.47157190635451,15
+"{factor=Portion Size,outlet=Hostel Mess} => {diet=Vegetarian}",0.170454545454545,0.652173913043478,0.261363636363636,1.47157190635451,15
+"{factor=Portion Size,improve=Lower Prices} => {diet=Vegetarian}",0.147727272727273,0.65,0.227272727272727,1.46666666666667,13
+"{improve=Better Taste} => {factor=Hygiene/Cleanliness}",0.159090909090909,0.7,0.227272727272727,1.46666666666667,14
+"{diet=Non-Vegetarian,sat=Neutral,skip=Breakfast} => {spend=Medium}",0.136363636363636,0.75,0.181818181818182,1.46666666666667,12
+"{diet=Vegetarian,factor=Food Quality} => {improve=Lower Prices}",0.181818181818182,0.615384615384615,0.295454545454545,1.46361746361746,16
+"{diet=Vegetarian,improve=Better Food Quality,skip=Breakfast} => {outlet=Hostel Mess}",0.147727272727273,0.764705882352941,0.193181818181818,1.46291560102302,13
+"{factor=Hygiene/Cleanliness,factor=Taste} => {diet=Non-Vegetarian}",0.125,0.647058823529412,0.193181818181818,1.46003016591252,11
+"{factor=Portion Size,factor=Taste} => {diet=Non-Vegetarian}",0.125,0.647058823529412,0.193181818181818,1.46003016591252,11
+"{factor=Food Quality,improve=Better Food Quality,skip=Breakfast} => {diet=Vegetarian}",0.125,0.647058823529412,0.193181818181818,1.46003016591252,11
+"{diet=Vegetarian,factor=Price/Affordability} => {improve=Lower Prices}",0.125,0.611111111111111,0.204545454545455,1.45345345345345,11
+"{outlet=Hostel Mess,outlet=Nescafe} => {improve=Lower Prices}",0.125,0.611111111111111,0.204545454545455,1.45345345345345,11
+"{diet=Vegetarian,outlet=Hostel Mess,skip=Breakfast} => {improve=Lower Prices}",0.125,0.611111111111111,0.204545454545455,1.45345345345345,11
+"{sat=Satisfied} => {outlet=Nescafe}",0.170454545454545,0.625,0.272727272727273,1.44736842105263,15
+"{improve=Larger Portions,skip=Breakfast} => {factor=Portion Size}",0.136363636363636,0.705882352941177,0.193181818181818,1.44459644322845,12
+"{outlet=Hostel Mess,skip=Breakfast,spend=Medium} => {factor=Portion Size}",0.136363636363636,0.705882352941177,0.193181818181818,1.44459644322845,12
+"{diet=Vegetarian,outlet=Hostel Mess,skip=Breakfast} => {improve=Better Food Quality}",0.147727272727273,0.722222222222222,0.204545454545455,1.44444444444444,13
+"{factor=Food Quality,improve=Lower Prices} => {diet=Vegetarian}",0.181818181818182,0.64,0.284090909090909,1.44410256410256,16
+"{diet=Non-Vegetarian,improve=Better Food Quality} => {sat=Neutral}",0.125,0.6875,0.181818181818182,1.44047619047619,11
+"{diet=Vegetarian,outlet=Nescafe} => {factor=Food Quality}",0.125,0.785714285714286,0.159090909090909,1.44047619047619,11
+"{factor=Price/Affordability,factor=Taste} => {sat=Neutral}",0.125,0.6875,0.181818181818182,1.44047619047619,11
+"{factor=Food Quality,factor=Portion Size} => {diet=Vegetarian}",0.159090909090909,0.636363636363636,0.25,1.43589743589744,14
+"{factor=Portion Size,improve=Better Hygiene/Cleanliness,skip=Breakfast} => {outlet=Hostel Mess}",0.136363636363636,0.75,0.181818181818182,1.43478260869565,12
+"{diet=Non-Vegetarian,factor=Hygiene/Cleanliness} => {sat=Neutral}",0.147727272727273,0.684210526315789,0.215909090909091,1.43358395989975,13
+"{factor=Portion Size,outlet=Hostel Mess,skip=Breakfast} => {improve=Lower Prices}",0.136363636363636,0.6,0.227272727272727,1.42702702702703,12
+"{factor=Food Quality,outlet=Snacker} => {diet=Vegetarian}",0.136363636363636,0.631578947368421,0.215909090909091,1.4251012145749,12
+"{factor=Food Quality,outlet=Hostel Mess} => {diet=Vegetarian}",0.193181818181818,0.62962962962963,0.306818181818182,1.42070275403609,17
+"{improve=Lower Prices,outlet=Hostel Mess} => {diet=Vegetarian}",0.170454545454545,0.625,0.272727272727273,1.41025641025641,15
+"{diet=Non-Vegetarian,improve=Better Hygiene/Cleanliness} => {factor=Taste}",0.170454545454545,0.625,0.272727272727273,1.41025641025641,15
+"{diet=Vegetarian,spend=Medium} => {outlet=Hostel Mess}",0.159090909090909,0.736842105263158,0.215909090909091,1.40961098398169,14
+"{diet=Vegetarian,improve=Lower Prices,skip=Breakfast} => {outlet=Hostel Mess}",0.125,0.733333333333333,0.170454545454545,1.40289855072464,11
+"{diet=Non-Vegetarian,skip=Breakfast} => {factor=Taste}",0.204545454545455,0.620689655172414,0.329545454545455,1.40053050397878,18
+"{outlet=Night Canteen} => {diet=Non-Vegetarian}",0.147727272727273,0.619047619047619,0.238636363636364,1.3968253968254,13
+"{factor=Price/Affordability,outlet=Hostel Mess} => {diet=Vegetarian}",0.147727272727273,0.619047619047619,0.238636363636364,1.3968253968254,13
+"{diet=Non-Vegetarian,spend=Medium} => {sat=Neutral}",0.159090909090909,0.666666666666667,0.238636363636364,1.3968253968254,14
+"{diet=Non-Vegetarian} => {factor=Taste}",0.272727272727273,0.615384615384615,0.443181818181818,1.38856015779093,24
+"{factor=Taste} => {diet=Non-Vegetarian}",0.272727272727273,0.615384615384615,0.443181818181818,1.38856015779093,24
+"{diet=Vegetarian,factor=Price/Affordability} => {outlet=Hostel Mess}",0.147727272727273,0.722222222222222,0.204545454545455,1.38164251207729,13
+"{diet=Non-Vegetarian,outlet=Snacker} => {factor=Taste}",0.125,0.611111111111111,0.204545454545455,1.37891737891738,11
+"{improve=Better Hygiene/Cleanliness,outlet=Snacker} => {diet=Non-Vegetarian}",0.125,0.611111111111111,0.204545454545455,1.37891737891738,11
+"{improve=Lower Prices,outlet=Hostel Mess,skip=Breakfast} => {diet=Vegetarian}",0.125,0.611111111111111,0.204545454545455,1.37891737891738,11
+"{diet=Non-Vegetarian,improve=Better Hygiene/Cleanliness,skip=Breakfast} => {factor=Taste}",0.125,0.611111111111111,0.204545454545455,1.37891737891738,11
+"{improve=Lower Prices,outlet=Nescafe} => {improve=Better Food Quality}",0.147727272727273,0.684210526315789,0.215909090909091,1.36842105263158,13
+"{diet=Vegetarian,improve=Better Food Quality} => {outlet=Hostel Mess}",0.170454545454545,0.714285714285714,0.238636363636364,1.36645962732919,15
+"{diet=Vegetarian,factor=Portion Size} => {outlet=Hostel Mess}",0.170454545454545,0.714285714285714,0.238636363636364,1.36645962732919,15
+"{improve=Lower Prices,outlet=Hostel Mess,skip=Breakfast} => {factor=Portion Size}",0.136363636363636,0.666666666666667,0.204545454545455,1.36434108527132,12
+"{diet=Vegetarian,outlet=Hostel Mess,skip=Breakfast} => {factor=Portion Size}",0.136363636363636,0.666666666666667,0.204545454545455,1.36434108527132,12
+"{improve=Better Hygiene/Cleanliness,outlet=Hostel Mess,skip=Breakfast} => {factor=Portion Size}",0.136363636363636,0.666666666666667,0.204545454545455,1.36434108527132,12
+"{factor=Portion Size,improve=Better Food Quality} => {diet=Vegetarian}",0.136363636363636,0.6,0.227272727272727,1.35384615384615,12
+"{factor=Portion Size,outlet=Hostel Mess,skip=Breakfast} => {diet=Vegetarian}",0.136363636363636,0.6,0.227272727272727,1.35384615384615,12
+"{improve=Lower Prices,spend=Medium} => {outlet=Hostel Mess}",0.136363636363636,0.705882352941177,0.193181818181818,1.35038363171356,12
+"{factor=Portion Size,improve=Lower Prices,skip=Breakfast} => {outlet=Hostel Mess}",0.136363636363636,0.705882352941177,0.193181818181818,1.35038363171356,12
+"{outlet=Nescafe,outlet=Snacker} => {factor=Food Quality}",0.125,0.733333333333333,0.170454545454545,1.34444444444444,11
+"{improve=Better Taste} => {outlet=Hostel Mess}",0.159090909090909,0.7,0.227272727272727,1.33913043478261,14
+"{diet=Vegetarian,improve=Better Hygiene/Cleanliness} => {outlet=Hostel Mess}",0.159090909090909,0.7,0.227272727272727,1.33913043478261,14
+"{factor=Portion Size,improve=Better Hygiene/Cleanliness} => {outlet=Hostel Mess}",0.159090909090909,0.7,0.227272727272727,1.33913043478261,14
+"{spend=Low} => {sat=Neutral}",0.159090909090909,0.636363636363636,0.25,1.33333333333333,14
+"{diet=Vegetarian,improve=Lower Prices} => {factor=Food Quality}",0.181818181818182,0.727272727272727,0.25,1.33333333333333,16
+"{outlet=Hostel Mess,outlet=Nescafe} => {improve=Better Food Quality}",0.136363636363636,0.666666666666667,0.204545454545455,1.33333333333333,12
+"{diet=Vegetarian,skip=Breakfast} => {outlet=Hostel Mess}",0.204545454545455,0.692307692307692,0.295454545454545,1.32441471571906,18
+"{improve=Better Food Quality,improve=Lower Prices} => {factor=Food Quality}",0.147727272727273,0.722222222222222,0.204545454545455,1.32407407407407,13
+"{factor=Portion Size,sat=Dissatisfied} => {skip=Breakfast}",0.147727272727273,0.928571428571429,0.159090909090909,1.31797235023041,13
+"{diet=Non-Vegetarian,outlet=Hostel Mess} => {improve=Better Hygiene/Cleanliness}",0.125,0.6875,0.181818181818182,1.31521739130435,11
+"{diet=Non-Vegetarian,outlet=Night Canteen} => {skip=Breakfast}",0.136363636363636,0.923076923076923,0.147727272727273,1.31017369727047,12
+"{factor=Portion Size,improve=Larger Portions} => {skip=Breakfast}",0.136363636363636,0.923076923076923,0.147727272727273,1.31017369727047,12
+"{improve=Better Hygiene/Cleanliness,improve=Lower Prices} => {skip=Breakfast}",0.136363636363636,0.923076923076923,0.147727272727273,1.31017369727047,12
+"{factor=Portion Size,improve=Lower Prices,outlet=Hostel Mess} => {skip=Breakfast}",0.136363636363636,0.923076923076923,0.147727272727273,1.31017369727047,12
+"{diet=Non-Vegetarian,factor=Taste} => {sat=Neutral}",0.170454545454545,0.625,0.272727272727273,1.30952380952381,15
+"{diet=Vegetarian,improve=Better Food Quality} => {factor=Food Quality}",0.170454545454545,0.714285714285714,0.238636363636364,1.30952380952381,15
+"{diet=Vegetarian,skip=Breakfast} => {improve=Better Food Quality}",0.193181818181818,0.653846153846154,0.295454545454545,1.30769230769231,17
+"{diet=Vegetarian,improve=Lower Prices} => {outlet=Hostel Mess}",0.170454545454545,0.681818181818182,0.25,1.30434782608696,15
+"{diet=Non-Vegetarian,factor=Taste,skip=Breakfast} => {spend=Medium}",0.136363636363636,0.666666666666667,0.204545454545455,1.3037037037037,12
+"{sat=Dissatisfied} => {factor=Portion Size}",0.159090909090909,0.636363636363636,0.25,1.30232558139535,14
+"{factor=Portion Size,outlet=Night Canteen} => {skip=Breakfast}",0.125,0.916666666666667,0.136363636363636,1.3010752688172,11
+"{factor=Food Quality,factor=Taste} => {improve=Better Food Quality}",0.147727272727273,0.65,0.227272727272727,1.3,13
+"{factor=Taste,spend=Medium} => {sat=Neutral}",0.147727272727273,0.619047619047619,0.238636363636364,1.29705215419501,13
+"{factor=Food Quality,spend=Medium} => {factor=Hygiene/Cleanliness}",0.147727272727273,0.619047619047619,0.238636363636364,1.29705215419501,13
+"{improve=Lower Prices,spend=Medium} => {factor=Food Quality}",0.136363636363636,0.705882352941177,0.193181818181818,1.29411764705882,12
+"{improve=Better Food Quality,improve=Better Hygiene/Cleanliness} => {factor=Food Quality}",0.136363636363636,0.705882352941177,0.193181818181818,1.29411764705882,12
+"{factor=Portion Size,improve=Lower Prices} => {factor=Food Quality}",0.159090909090909,0.7,0.227272727272727,1.28333333333333,14
+"{diet=Vegetarian,improve=Better Hygiene/Cleanliness} => {factor=Food Quality}",0.159090909090909,0.7,0.227272727272727,1.28333333333333,14
+"{sat=Dissatisfied,skip=Breakfast} => {factor=Hygiene/Cleanliness}",0.125,0.611111111111111,0.204545454545455,1.28042328042328,11
+"{diet=Non-Vegetarian,factor=Taste,skip=Breakfast} => {sat=Neutral}",0.125,0.611111111111111,0.204545454545455,1.28042328042328,11
+"{outlet=Hostel Mess,skip=Breakfast} => {factor=Portion Size}",0.227272727272727,0.625,0.363636363636364,1.27906976744186,20
+"{diet=Vegetarian} => {outlet=Hostel Mess}",0.295454545454545,0.666666666666667,0.443181818181818,1.27536231884058,26
+"{factor=Taste,outlet=Hostel Mess} => {improve=Better Hygiene/Cleanliness}",0.136363636363636,0.666666666666667,0.204545454545455,1.27536231884058,12
+"{factor=Food Quality,improve=Lower Prices,skip=Breakfast} => {outlet=Hostel Mess}",0.136363636363636,0.666666666666667,0.204545454545455,1.27536231884058,12
+"{factor=Portion Size,skip=Breakfast,spend=Medium} => {outlet=Hostel Mess}",0.136363636363636,0.666666666666667,0.204545454545455,1.27536231884058,12
+"{factor=Price/Affordability,skip=Breakfast} => {factor=Portion Size}",0.204545454545455,0.620689655172414,0.329545454545455,1.27024859663192,18
+"{improve=Larger Portions} => {factor=Portion Size}",0.147727272727273,0.619047619047619,0.238636363636364,1.26688815060908,13
+"{factor=Portion Size,outlet=Snacker} => {spend=Medium}",0.125,0.647058823529412,0.193181818181818,1.26535947712418,11
+"{improve=Lower Prices,sat=Neutral} => {factor=Food Quality}",0.125,0.6875,0.181818181818182,1.26041666666667,11
+"{diet=Non-Vegetarian,factor=Price/Affordability} => {sat=Neutral}",0.136363636363636,0.6,0.227272727272727,1.25714285714286,12
+"{diet=Vegetarian,factor=Hygiene/Cleanliness} => {factor=Food Quality}",0.147727272727273,0.684210526315789,0.215909090909091,1.25438596491228,13
+"{improve=Better Food Quality,outlet=Nescafe} => {factor=Food Quality}",0.147727272727273,0.684210526315789,0.215909090909091,1.25438596491228,13
+"{improve=Better Hygiene/Cleanliness,outlet=Nescafe} => {factor=Food Quality}",0.147727272727273,0.684210526315789,0.215909090909091,1.25438596491228,13
+"{factor=Hygiene/Cleanliness,factor=Portion Size} => {skip=Breakfast}",0.170454545454545,0.882352941176471,0.193181818181818,1.25237191650854,15
+"{diet=Vegetarian,factor=Food Quality} => {outlet=Hostel Mess}",0.193181818181818,0.653846153846154,0.295454545454545,1.25083612040134,17
+"{outlet=Night Canteen,skip=Breakfast} => {factor=Portion Size}",0.125,0.611111111111111,0.204545454545455,1.25064599483204,11
+"{diet=Vegetarian,factor=Price/Affordability} => {factor=Portion Size}",0.125,0.611111111111111,0.204545454545455,1.25064599483204,11
+"{outlet=Hostel Mess,outlet=Nescafe} => {factor=Portion Size}",0.125,0.611111111111111,0.204545454545455,1.25064599483204,11
+"{factor=Food Quality,improve=Lower Prices,skip=Breakfast} => {factor=Portion Size}",0.125,0.611111111111111,0.204545454545455,1.25064599483204,11
+"{spend=Low} => {factor=Food Quality}",0.170454545454545,0.681818181818182,0.25,1.25,15
+"{factor=Portion Size,improve=Lower Prices} => {outlet=Hostel Mess}",0.147727272727273,0.65,0.227272727272727,1.24347826086957,13
+"{factor=Price/Affordability,improve=Lower Prices} => {outlet=Hostel Mess}",0.147727272727273,0.65,0.227272727272727,1.24347826086957,13
+"{factor=Hygiene/Cleanliness,spend=Medium} => {improve=Better Hygiene/Cleanliness}",0.147727272727273,0.65,0.227272727272727,1.24347826086957,13
+"{factor=Hygiene/Cleanliness,spend=Medium} => {outlet=Hostel Mess}",0.147727272727273,0.65,0.227272727272727,1.24347826086957,13
+"{improve=Lower Prices,skip=Breakfast} => {factor=Portion Size}",0.193181818181818,0.607142857142857,0.318181818181818,1.24252491694352,17
+"{diet=Non-Vegetarian,factor=Portion Size} => {skip=Breakfast}",0.159090909090909,0.875,0.181818181818182,1.24193548387097,14
+"{improve=Lower Prices} => {outlet=Hostel Mess}",0.272727272727273,0.648648648648649,0.420454545454545,1.24089306698002,24
+"{improve=Lower Prices} => {factor=Food Quality}",0.284090909090909,0.675675675675676,0.420454545454546,1.23873873873874,25
+"{factor=Portion Size,outlet=Hostel Mess} => {skip=Breakfast}",0.227272727272727,0.869565217391304,0.261363636363636,1.23422159887798,20
+"{sat=Neutral,skip=Breakfast} => {spend=Medium}",0.193181818181818,0.62962962962963,0.306818181818182,1.23127572016461,17
+"{diet=Vegetarian,improve=Better Food Quality,outlet=Hostel Mess} => {skip=Breakfast}",0.147727272727273,0.866666666666667,0.170454545454545,1.23010752688172,13
+"{improve=Lower Prices,skip=Breakfast} => {outlet=Hostel Mess}",0.204545454545455,0.642857142857143,0.318181818181818,1.22981366459627,18
+"{factor=Food Quality,improve=Lower Prices} => {outlet=Hostel Mess}",0.181818181818182,0.64,0.284090909090909,1.22434782608696,16
+"{factor=Food Quality,factor=Hygiene/Cleanliness} => {outlet=Hostel Mess}",0.181818181818182,0.64,0.284090909090909,1.22434782608696,16
+"{sat=Satisfied} => {factor=Food Quality}",0.181818181818182,0.666666666666667,0.272727272727273,1.22222222222222,16
+"{diet=Vegetarian} => {factor=Food Quality}",0.295454545454545,0.666666666666667,0.443181818181818,1.22222222222222,26
+"{improve=Lower Prices,outlet=Hostel Mess} => {factor=Food Quality}",0.181818181818182,0.666666666666667,0.272727272727273,1.22222222222222,16
+"{diet=Vegetarian,factor=Portion Size} => {factor=Food Quality}",0.159090909090909,0.666666666666667,0.238636363636364,1.22222222222222,14
+"{diet=Vegetarian,factor=Price/Affordability} => {factor=Food Quality}",0.136363636363636,0.666666666666667,0.204545454545455,1.22222222222222,12
+"{factor=Hygiene/Cleanliness,improve=Better Food Quality} => {factor=Food Quality}",0.159090909090909,0.666666666666667,0.238636363636364,1.22222222222222,14
+"{factor=Hygiene/Cleanliness,outlet=Hostel Mess} => {factor=Food Quality}",0.181818181818182,0.666666666666667,0.272727272727273,1.22222222222222,16
+"{improve=Better Food Quality,outlet=Hostel Mess} => {factor=Food Quality}",0.159090909090909,0.666666666666667,0.238636363636364,1.22222222222222,14
+"{improve=Lower Prices,outlet=Hostel Mess,skip=Breakfast} => {factor=Food Quality}",0.136363636363636,0.666666666666667,0.204545454545455,1.22222222222222,12
+"{factor=Hygiene/Cleanliness,improve=Better Hygiene/Cleanliness} => {outlet=Hostel Mess}",0.159090909090909,0.636363636363636,0.25,1.21739130434783,14
+"{factor=Portion Size,spend=Medium} => {outlet=Hostel Mess}",0.159090909090909,0.636363636363636,0.25,1.21739130434783,14
+"{outlet=Night Canteen} => {skip=Breakfast}",0.204545454545455,0.857142857142857,0.238636363636364,1.21658986175115,18
+"{diet=Non-Vegetarian,factor=Taste,spend=Medium} => {skip=Breakfast}",0.136363636363636,0.857142857142857,0.159090909090909,1.21658986175115,12
+"{diet=Non-Vegetarian,sat=Neutral,spend=Medium} => {skip=Breakfast}",0.136363636363636,0.857142857142857,0.159090909090909,1.21658986175115,12
+"{factor=Portion Size,outlet=Hostel Mess,spend=Medium} => {skip=Breakfast}",0.136363636363636,0.857142857142857,0.159090909090909,1.21658986175115,12
+"{factor=Portion Size,improve=Better Hygiene/Cleanliness,outlet=Hostel Mess} => {skip=Breakfast}",0.136363636363636,0.857142857142857,0.159090909090909,1.21658986175115,12
+"{outlet=Night Canteen} => {factor=Price/Affordability}",0.147727272727273,0.619047619047619,0.238636363636364,1.21058201058201,13
+"{factor=Food Quality,sat=Neutral} => {factor=Price/Affordability}",0.147727272727273,0.619047619047619,0.238636363636364,1.21058201058201,13
+"{diet=Non-Vegetarian,factor=Hygiene/Cleanliness} => {improve=Better Hygiene/Cleanliness}",0.136363636363636,0.631578947368421,0.215909090909091,1.20823798627002,12
+"{diet=Vegetarian,factor=Hygiene/Cleanliness} => {outlet=Hostel Mess}",0.136363636363636,0.631578947368421,0.215909090909091,1.20823798627002,12
+"{improve=Better Food Quality,outlet=Nescafe} => {outlet=Hostel Mess}",0.136363636363636,0.631578947368421,0.215909090909091,1.20823798627002,12
+"{factor=Portion Size,improve=Lower Prices} => {skip=Breakfast}",0.193181818181818,0.85,0.227272727272727,1.20645161290323,17
+"{outlet=Yadav Canteen} => {factor=Price/Affordability}",0.181818181818182,0.615384615384615,0.295454545454545,1.2034188034188,16
+"{factor=Price/Affordability,outlet=Night Canteen} => {skip=Breakfast}",0.125,0.846153846153846,0.147727272727273,1.20099255583127,11
+"{factor=Hygiene/Cleanliness,sat=Dissatisfied} => {skip=Breakfast}",0.125,0.846153846153846,0.147727272727273,1.20099255583127,11
+"{improve=Lower Prices,outlet=Snacker} => {skip=Breakfast}",0.125,0.846153846153846,0.147727272727273,1.20099255583127,11
+"{outlet=Hostel Mess,outlet=Snacker} => {skip=Breakfast}",0.125,0.846153846153846,0.147727272727273,1.20099255583127,11
+"{diet=Vegetarian,outlet=Hostel Mess} => {factor=Food Quality}",0.193181818181818,0.653846153846154,0.295454545454545,1.19871794871795,17
+"{diet=Non-Vegetarian,factor=Taste} => {improve=Better Hygiene/Cleanliness}",0.170454545454545,0.625,0.272727272727273,1.19565217391304,15
+"{diet=Non-Vegetarian,outlet=Nescafe} => {skip=Breakfast}",0.181818181818182,0.842105263157895,0.215909090909091,1.19524617996604,16
+"{outlet=Night Canteen,skip=Breakfast} => {factor=Price/Affordability}",0.125,0.611111111111111,0.204545454545455,1.19506172839506,11
+"{diet=Non-Vegetarian,outlet=Snacker} => {spend=Medium}",0.125,0.611111111111111,0.204545454545455,1.19506172839506,11
+"{factor=Price/Affordability,outlet=Snacker} => {spend=Medium}",0.125,0.611111111111111,0.204545454545455,1.19506172839506,11
+"{diet=Vegetarian,factor=Price/Affordability} => {spend=Medium}",0.125,0.611111111111111,0.204545454545455,1.19506172839506,11
+"{factor=Taste,outlet=Hostel Mess} => {spend=Medium}",0.125,0.611111111111111,0.204545454545455,1.19506172839506,11
+"{factor=Taste,improve=Better Food Quality} => {factor=Food Quality}",0.147727272727273,0.65,0.227272727272727,1.19166666666667,13
+"{factor=Hygiene/Cleanliness,spend=Medium} => {factor=Food Quality}",0.147727272727273,0.65,0.227272727272727,1.19166666666667,13
+"{diet=Non-Vegetarian,sat=Neutral} => {spend=Medium}",0.159090909090909,0.608695652173913,0.261363636363636,1.19033816425121,14
+"{factor=Portion Size,outlet=Hostel Mess} => {spend=Medium}",0.159090909090909,0.608695652173913,0.261363636363636,1.19033816425121,14
+"{diet=Non-Vegetarian,skip=Breakfast} => {improve=Better Hygiene/Cleanliness}",0.204545454545455,0.620689655172414,0.329545454545455,1.18740629685157,18
+"{factor=Hygiene/Cleanliness,factor=Taste} => {factor=Food Quality}",0.125,0.647058823529412,0.193181818181818,1.18627450980392,11
+"{factor=Portion Size,improve=Lower Prices,skip=Breakfast} => {factor=Food Quality}",0.125,0.647058823529412,0.193181818181818,1.18627450980392,11
+"{diet=Vegetarian,improve=Better Food Quality,skip=Breakfast} => {factor=Food Quality}",0.125,0.647058823529412,0.193181818181818,1.18627450980392,11
+"{diet=Non-Vegetarian,spend=Medium} => {improve=Better Hygiene/Cleanliness}",0.147727272727273,0.619047619047619,0.238636363636364,1.18426501035197,13
+"{diet=Non-Vegetarian,outlet=Snacker} => {skip=Breakfast}",0.170454545454545,0.833333333333333,0.204545454545455,1.18279569892473,15
+"{improve=Lower Prices,skip=Breakfast} => {factor=Food Quality}",0.204545454545455,0.642857142857143,0.318181818181818,1.17857142857143,18
+"{diet=Non-Vegetarian} => {improve=Better Hygiene/Cleanliness}",0.272727272727273,0.615384615384615,0.443181818181818,1.17725752508361,24
+"{improve=Better Taste} => {spend=Medium}",0.136363636363636,0.6,0.227272727272727,1.17333333333333,12
+"{factor=Taste,skip=Breakfast} => {spend=Medium}",0.170454545454545,0.6,0.284090909090909,1.17333333333333,15
+"{factor=Portion Size,improve=Better Food Quality} => {spend=Medium}",0.136363636363636,0.6,0.227272727272727,1.17333333333333,12
+"{factor=Portion Size,improve=Better Food Quality} => {factor=Price/Affordability}",0.136363636363636,0.6,0.227272727272727,1.17333333333333,12
+"{factor=Portion Size,outlet=Hostel Mess,skip=Breakfast} => {spend=Medium}",0.136363636363636,0.6,0.227272727272727,1.17333333333333,12
+"{diet=Non-Vegetarian,outlet=Snacker} => {improve=Better Hygiene/Cleanliness}",0.125,0.611111111111111,0.204545454545455,1.16908212560386,11
+"{improve=Better Food Quality,improve=Lower Prices} => {outlet=Hostel Mess}",0.125,0.611111111111111,0.204545454545455,1.16908212560386,11
+"{factor=Hygiene/Cleanliness,sat=Neutral} => {improve=Better Hygiene/Cleanliness}",0.125,0.611111111111111,0.204545454545455,1.16908212560386,11
+"{factor=Hygiene/Cleanliness,sat=Neutral} => {outlet=Hostel Mess}",0.125,0.611111111111111,0.204545454545455,1.16908212560386,11
+"{diet=Non-Vegetarian,factor=Taste,skip=Breakfast} => {improve=Better Hygiene/Cleanliness}",0.125,0.611111111111111,0.204545454545455,1.16908212560386,11
+"{factor=Portion Size,outlet=Hostel Mess} => {improve=Better Hygiene/Cleanliness}",0.159090909090909,0.608695652173913,0.261363636363636,1.16446124763705,14
+"{sat=Dissatisfied} => {skip=Breakfast}",0.204545454545455,0.818181818181818,0.25,1.16129032258065,18
+"{factor=Portion Size,spend=Medium} => {skip=Breakfast}",0.204545454545455,0.818181818181818,0.25,1.16129032258065,18
+"{factor=Portion Size,skip=Breakfast} => {outlet=Hostel Mess}",0.227272727272727,0.606060606060606,0.375,1.15942028985507,20
+"{improve=Lower Prices,outlet=Nescafe} => {factor=Food Quality}",0.136363636363636,0.631578947368421,0.215909090909091,1.15789473684211,12
+"{improve=Larger Portions} => {skip=Breakfast}",0.193181818181818,0.80952380952381,0.238636363636364,1.14900153609831,17
+"{diet=Non-Vegetarian,spend=Medium} => {skip=Breakfast}",0.193181818181818,0.80952380952381,0.238636363636364,1.14900153609831,17
+"{diet=Vegetarian,improve=Better Food Quality} => {skip=Breakfast}",0.193181818181818,0.80952380952381,0.238636363636364,1.14900153609831,17
+"{factor=Food Quality,improve=Better Hygiene/Cleanliness} => {outlet=Hostel Mess}",0.170454545454545,0.6,0.284090909090909,1.14782608695652,15
+"{factor=Portion Size,outlet=Hostel Mess,skip=Breakfast} => {improve=Better Hygiene/Cleanliness}",0.136363636363636,0.6,0.227272727272727,1.14782608695652,12
+"{outlet=Nescafe,outlet=Snacker} => {skip=Breakfast}",0.136363636363636,0.8,0.170454545454545,1.13548387096774,12
+"{factor=Hygiene/Cleanliness,outlet=Snacker} => {skip=Breakfast}",0.136363636363636,0.8,0.170454545454545,1.13548387096774,12
+"{factor=Portion Size,improve=Better Hygiene/Cleanliness} => {skip=Breakfast}",0.181818181818182,0.8,0.227272727272727,1.13548387096774,16
+"{diet=Vegetarian,factor=Portion Size,outlet=Hostel Mess} => {skip=Breakfast}",0.136363636363636,0.8,0.170454545454545,1.13548387096774,12
+"{factor=Price/Affordability,outlet=Hostel Mess} => {factor=Food Quality}",0.147727272727273,0.619047619047619,0.238636363636364,1.13492063492064,13
+"{improve=Better Food Quality} => {factor=Food Quality}",0.306818181818182,0.613636363636364,0.5,1.125,27
+"{outlet=Snacker,spend=Medium} => {skip=Breakfast}",0.170454545454545,0.789473684210526,0.215909090909091,1.12054329371817,15
+"{factor=Taste,outlet=Hostel Mess} => {factor=Food Quality}",0.125,0.611111111111111,0.204545454545455,1.12037037037037,11
+"{factor=Taste,outlet=Snacker} => {skip=Breakfast}",0.125,0.785714285714286,0.159090909090909,1.11520737327189,11
+"{outlet=Snacker,sat=Neutral} => {skip=Breakfast}",0.125,0.785714285714286,0.159090909090909,1.11520737327189,11
+"{improve=Better Food Quality,outlet=Snacker} => {skip=Breakfast}",0.125,0.785714285714286,0.159090909090909,1.11520737327189,11
+"{factor=Food Quality,factor=Portion Size,improve=Lower Prices} => {skip=Breakfast}",0.125,0.785714285714286,0.159090909090909,1.11520737327189,11
+"{factor=Price/Affordability,outlet=Snacker} => {skip=Breakfast}",0.159090909090909,0.777777777777778,0.204545454545455,1.10394265232975,14
+"{improve=Better Hygiene/Cleanliness,outlet=Snacker} => {skip=Breakfast}",0.159090909090909,0.777777777777778,0.204545454545455,1.10394265232975,14
+"{improve=Better Food Quality,improve=Lower Prices} => {skip=Breakfast}",0.159090909090909,0.777777777777778,0.204545454545455,1.10394265232975,14
+"{outlet=Hostel Mess,outlet=Nescafe} => {skip=Breakfast}",0.159090909090909,0.777777777777778,0.204545454545455,1.10394265232975,14
+"{improve=Better Taste} => {factor=Food Quality}",0.136363636363636,0.6,0.227272727272727,1.1,12
+"{factor=Price/Affordability,improve=Lower Prices} => {factor=Food Quality}",0.136363636363636,0.6,0.227272727272727,1.1,12
+"{factor=Portion Size,improve=Better Food Quality} => {factor=Food Quality}",0.136363636363636,0.6,0.227272727272727,1.1,12
+"{outlet=Snacker} => {skip=Breakfast}",0.306818181818182,0.771428571428571,0.397727272727273,1.09493087557604,27
+"{factor=Portion Size} => {skip=Breakfast}",0.375,0.767441860465116,0.488636363636364,1.08927231807952,33
+"{factor=Portion Size,outlet=Snacker} => {skip=Breakfast}",0.147727272727273,0.764705882352941,0.193181818181818,1.0853889943074,13
+"{improve=Lower Prices,spend=Medium} => {skip=Breakfast}",0.147727272727273,0.764705882352941,0.193181818181818,1.0853889943074,13
+"{factor=Portion Size,factor=Taste} => {skip=Breakfast}",0.147727272727273,0.764705882352941,0.193181818181818,1.0853889943074,13
+"{spend=High} => {skip=Breakfast}",0.181818181818182,0.761904761904762,0.238636363636364,1.08141321044547,16
+"{improve=Lower Prices} => {skip=Breakfast}",0.318181818181818,0.756756756756757,0.420454545454545,1.07410636442895,28
+"{improve=Lower Prices,sat=Neutral} => {skip=Breakfast}",0.136363636363636,0.75,0.181818181818182,1.06451612903226,12
+"{improve=Lower Prices,outlet=Hostel Mess} => {skip=Breakfast}",0.204545454545455,0.75,0.272727272727273,1.06451612903226,18
+"{diet=Non-Vegetarian,factor=Taste} => {skip=Breakfast}",0.204545454545455,0.75,0.272727272727273,1.06451612903226,18
+"{diet=Non-Vegetarian,improve=Better Hygiene/Cleanliness} => {skip=Breakfast}",0.204545454545455,0.75,0.272727272727273,1.06451612903226,18
+"{diet=Non-Vegetarian,factor=Food Quality} => {skip=Breakfast}",0.136363636363636,0.75,0.181818181818182,1.06451612903226,12
+"{outlet=Nescafe,spend=Medium} => {skip=Breakfast}",0.136363636363636,0.75,0.181818181818182,1.06451612903226,12
+"{factor=Portion Size,sat=Neutral} => {skip=Breakfast}",0.136363636363636,0.75,0.181818181818182,1.06451612903226,12
+"{factor=Hygiene/Cleanliness,spend=Medium} => {skip=Breakfast}",0.170454545454545,0.75,0.227272727272727,1.06451612903226,15
+"{factor=Portion Size,improve=Better Food Quality} => {skip=Breakfast}",0.170454545454545,0.75,0.227272727272727,1.06451612903226,15
+"{factor=Food Quality,improve=Lower Prices,outlet=Hostel Mess} => {skip=Breakfast}",0.136363636363636,0.75,0.181818181818182,1.06451612903226,12
+"{diet=Non-Vegetarian} => {skip=Breakfast}",0.329545454545455,0.743589743589744,0.443181818181818,1.05541770057899,29
+"{outlet=Nescafe} => {skip=Breakfast}",0.318181818181818,0.736842105263158,0.431818181818182,1.04584040747029,28
+"{factor=Food Quality,outlet=Snacker} => {skip=Breakfast}",0.159090909090909,0.736842105263158,0.215909090909091,1.04584040747029,14
+"{improve=Lower Prices,outlet=Nescafe} => {skip=Breakfast}",0.159090909090909,0.736842105263158,0.215909090909091,1.04584040747029,14
+"{factor=Portion Size,outlet=Nescafe} => {skip=Breakfast}",0.159090909090909,0.736842105263158,0.215909090909091,1.04584040747029,14
+"{improve=Better Hygiene/Cleanliness,outlet=Nescafe} => {skip=Breakfast}",0.159090909090909,0.736842105263158,0.215909090909091,1.04584040747029,14
+"{spend=Medium} => {skip=Breakfast}",0.375,0.733333333333333,0.511363636363636,1.04086021505376,33
+"{outlet=Nescafe,sat=Satisfied} => {skip=Breakfast}",0.125,0.733333333333333,0.170454545454545,1.04086021505376,11
+"{factor=Taste,outlet=Nescafe} => {skip=Breakfast}",0.125,0.733333333333333,0.170454545454545,1.04086021505376,11
+"{diet=Vegetarian,improve=Lower Prices,outlet=Hostel Mess} => {skip=Breakfast}",0.125,0.733333333333333,0.170454545454545,1.04086021505376,11
+"{diet=Non-Vegetarian,factor=Taste,sat=Neutral} => {skip=Breakfast}",0.125,0.733333333333333,0.170454545454545,1.04086021505376,11
+"{diet=Non-Vegetarian,factor=Taste,improve=Better Hygiene/Cleanliness} => {skip=Breakfast}",0.125,0.733333333333333,0.170454545454545,1.04086021505376,11
+"{diet=Vegetarian,factor=Food Quality,improve=Better Food Quality} => {skip=Breakfast}",0.125,0.733333333333333,0.170454545454545,1.04086021505376,11
+"{improve=Better Food Quality,spend=Medium} => {skip=Breakfast}",0.181818181818182,0.727272727272727,0.25,1.03225806451613,16
+"{factor=Food Quality,improve=Lower Prices} => {skip=Breakfast}",0.204545454545455,0.72,0.284090909090909,1.02193548387097,18
+"{factor=Portion Size,factor=Price/Affordability} => {skip=Breakfast}",0.204545454545455,0.72,0.284090909090909,1.02193548387097,18
+"{diet=Vegetarian,factor=Portion Size} => {skip=Breakfast}",0.170454545454545,0.714285714285714,0.238636363636364,1.01382488479263,15
+"{factor=Taste,spend=Medium} => {skip=Breakfast}",0.170454545454545,0.714285714285714,0.238636363636364,1.01382488479263,15
+"{improve=Better Food Quality,outlet=Hostel Mess} => {skip=Breakfast}",0.170454545454545,0.714285714285714,0.238636363636364,1.01382488479263,15
+"{sat=Satisfied} => {skip=Breakfast}",0.193181818181818,0.708333333333333,0.272727272727273,1.00537634408602,17
+"{sat=Neutral,spend=Medium} => {skip=Breakfast}",0.193181818181818,0.708333333333333,0.272727272727273,1.00537634408602,17
+"{improve=Better Hygiene/Cleanliness,spend=Medium} => {skip=Breakfast}",0.193181818181818,0.708333333333333,0.272727272727273,1.00537634408602,17
+"{outlet=Hostel Mess,spend=Medium} => {skip=Breakfast}",0.193181818181818,0.708333333333333,0.272727272727273,1.00537634408602,17
+"{diet=Non-Vegetarian,factor=Price/Affordability} => {skip=Breakfast}",0.159090909090909,0.7,0.227272727272727,0.993548387096774,14
+"{factor=Price/Affordability,outlet=Nescafe} => {skip=Breakfast}",0.159090909090909,0.7,0.227272727272727,0.993548387096774,14
+"{improve=Better Hygiene/Cleanliness} => {skip=Breakfast}",0.363636363636364,0.695652173913043,0.522727272727273,0.987377279102384,32
+"{outlet=Hostel Mess} => {skip=Breakfast}",0.363636363636364,0.695652173913043,0.522727272727273,0.987377279102384,32
+"{diet=Non-Vegetarian,sat=Neutral} => {skip=Breakfast}",0.181818181818182,0.695652173913043,0.261363636363636,0.987377279102384,16
+"{diet=Vegetarian,outlet=Hostel Mess} => {skip=Breakfast}",0.204545454545455,0.692307692307692,0.295454545454545,0.982630272952854,18
+"{diet=Non-Vegetarian,outlet=Hostel Mess} => {skip=Breakfast}",0.125,0.6875,0.181818181818182,0.975806451612903,11
+"{factor=Hygiene/Cleanliness,outlet=Nescafe} => {skip=Breakfast}",0.125,0.6875,0.181818181818182,0.975806451612903,11
+"{diet=Vegetarian,factor=Hygiene/Cleanliness} => {skip=Breakfast}",0.147727272727273,0.684210526315789,0.215909090909091,0.971137521222411,13
+"{diet=Vegetarian,spend=Medium} => {skip=Breakfast}",0.147727272727273,0.684210526315789,0.215909090909091,0.971137521222411,13
+"{improve=Better Food Quality,outlet=Nescafe} => {skip=Breakfast}",0.147727272727273,0.684210526315789,0.215909090909091,0.971137521222411,13
+"{factor=Price/Affordability,improve=Better Hygiene/Cleanliness} => {skip=Breakfast}",0.147727272727273,0.684210526315789,0.215909090909091,0.971137521222411,13
+"{improve=Better Food Quality} => {skip=Breakfast}",0.340909090909091,0.681818181818182,0.5,0.967741935483871,30
+"{diet=Vegetarian,improve=Lower Prices} => {skip=Breakfast}",0.170454545454545,0.681818181818182,0.25,0.967741935483871,15
+"{diet=Vegetarian} => {skip=Breakfast}",0.295454545454545,0.666666666666667,0.443181818181818,0.946236559139785,26
+"{factor=Hygiene/Cleanliness} => {skip=Breakfast}",0.318181818181818,0.666666666666667,0.477272727272727,0.946236559139785,28
+"{factor=Food Quality,spend=Medium} => {skip=Breakfast}",0.159090909090909,0.666666666666667,0.238636363636364,0.946236559139785,14
+"{improve=Better Hygiene/Cleanliness,outlet=Hostel Mess} => {skip=Breakfast}",0.204545454545455,0.666666666666667,0.306818181818182,0.946236559139785,18
+"{factor=Price/Affordability,improve=Lower Prices} => {skip=Breakfast}",0.147727272727273,0.65,0.227272727272727,0.92258064516129,13
+"{diet=Vegetarian,improve=Better Hygiene/Cleanliness} => {skip=Breakfast}",0.147727272727273,0.65,0.227272727272727,0.92258064516129,13
+"{improve=Better Food Quality,improve=Better Hygiene/Cleanliness} => {skip=Breakfast}",0.125,0.647058823529412,0.193181818181818,0.918406072106262,11
+"{factor=Price/Affordability} => {skip=Breakfast}",0.329545454545455,0.644444444444444,0.511363636363636,0.914695340501792,29
+"{sat=Neutral} => {skip=Breakfast}",0.306818181818182,0.642857142857143,0.477272727272727,0.912442396313364,27
+"{factor=Taste} => {skip=Breakfast}",0.284090909090909,0.641025641025641,0.443181818181818,0.909842845326716,25
+"{factor=Food Quality,improve=Better Hygiene/Cleanliness} => {skip=Breakfast}",0.181818181818182,0.64,0.284090909090909,0.908387096774194,16
+"{factor=Hygiene/Cleanliness,improve=Better Hygiene/Cleanliness} => {skip=Breakfast}",0.159090909090909,0.636363636363636,0.25,0.903225806451613,14
+"{diet=Non-Vegetarian,factor=Hygiene/Cleanliness} => {skip=Breakfast}",0.136363636363636,0.631578947368421,0.215909090909091,0.896434634974533,12
+"{factor=Hygiene/Cleanliness,factor=Price/Affordability} => {skip=Breakfast}",0.136363636363636,0.631578947368421,0.215909090909091,0.896434634974533,12
+"{factor=Food Quality,improve=Better Food Quality} => {skip=Breakfast}",0.193181818181818,0.62962962962963,0.306818181818182,0.893667861409797,17
+"{factor=Food Quality,outlet=Hostel Mess} => {skip=Breakfast}",0.193181818181818,0.62962962962963,0.306818181818182,0.893667861409797,17
+"{factor=Hygiene/Cleanliness,outlet=Hostel Mess} => {skip=Breakfast}",0.170454545454545,0.625,0.272727272727273,0.887096774193548,15
+"{factor=Price/Affordability,spend=Medium} => {skip=Breakfast}",0.170454545454545,0.625,0.272727272727273,0.887096774193548,15
+"{factor=Price/Affordability,outlet=Hostel Mess} => {skip=Breakfast}",0.147727272727273,0.619047619047619,0.238636363636364,0.878648233486943,13
+"{factor=Taste,outlet=Hostel Mess} => {skip=Breakfast}",0.125,0.611111111111111,0.204545454545455,0.867383512544803,11
+"{factor=Taste,sat=Neutral} => {skip=Breakfast}",0.159090909090909,0.608695652173913,0.261363636363636,0.863955119214586,14
+"{factor=Food Quality} => {skip=Breakfast}",0.329545454545455,0.604166666666667,0.545454545454545,0.85752688172043,29
+"{improve=Better Taste} => {skip=Breakfast}",0.136363636363636,0.6,0.227272727272727,0.851612903225806,12
+"{factor=Food Quality,factor=Hygiene/Cleanliness} => {skip=Breakfast}",0.170454545454545,0.6,0.284090909090909,0.851612903225806,15
