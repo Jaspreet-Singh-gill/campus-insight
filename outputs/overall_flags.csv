@@ -1,4 +1,0 @@
-flag,count,pct
-satisfied (rating >= 4),24,27.3
-skips_breakfast,62,70.5
-heavy_outside (>= 2/week),17,19.3
