@@ -122,5 +122,3 @@ Predicting satisfaction (satisfied = rating >= 4):
 ## 7. Limitations
 - **Sample Size**: The survey has 88 respondents, predominantly 3rd Year students (75%) and hostellers (95.5%), meaning day scholars and junior batches are underrepresented.
 - **Self-Reported Data**: Monthly spend and meal frequencies are estimates self-reported by respondents rather than verified billing transactions.
-- **Missing Specific Facility Ratings**: In the original Google Form export, five questions (dining infrastructure, staff friendliness, operating hours, cleanliness ratings, and nutrition labeling) were completely blank (100% missing values) and could not be evaluated independently.
-
